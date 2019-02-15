@@ -11,7 +11,6 @@ import org.wikipedia.dataclient.mwapi.SiteMatrix;
 import org.wikipedia.dataclient.mwapi.page.MwMobileViewPageLead;
 import org.wikipedia.dataclient.mwapi.page.MwMobileViewPageRemaining;
 import org.wikipedia.dataclient.mwapi.page.MwQueryPageSummary;
-import org.wikipedia.dataclient.okhttp.OfflineCacheInterceptor;
 import org.wikipedia.edit.Edit;
 import org.wikipedia.edit.preview.EditPreview;
 import org.wikipedia.login.LoginClient;
@@ -45,6 +44,11 @@ public interface Service {
                                                 + "&sectionprop=toclevel|line|anchor&noheadings=";
 
     int PREFERRED_THUMB_SIZE = 320;
+
+    public static final String OFFLINE_SAVE_HEADER = "X-Offline-Save";
+    public static final String OFFLINE_SAVE_HEADER_SAVE = "save";
+    public static final String OFFLINE_SAVE_HEADER_DELETE = "delete";
+    public static final String OFFLINE_SAVE_HEADER_NONE = "none";
 
     // ------- MobileView page content -------
 
@@ -88,7 +92,7 @@ public interface Service {
             + "|editable|pageprops&pageprops=wikibase_item"
             + "&sections=0&sectionprop=toclevel|line|anchor&noheadings=")
     @NonNull Observable<Response<MwMobileViewPageLead>> getLeadSection(@Nullable @Header("Cache-Control") String cacheControl,
-                                                                       @Nullable @Header(OfflineCacheInterceptor.SAVE_HEADER) String saveHeader,
+                                                                       @Nullable @Header(OFFLINE_SAVE_HEADER) String saveHeader,
                                                                        @Nullable @Header("Referer") String referrerUrl,
                                                                        @NonNull @Query("page") String title,
                                                                        @Query("thumbwidth") int leadImageWidth,
@@ -101,7 +105,7 @@ public interface Service {
      */
     @GET(MW_PAGE_SECTIONS_URL)
     @NonNull Observable<Response<MwMobileViewPageRemaining>> getRemainingSections(@Nullable @Header("Cache-Control") String cacheControl,
-                                                                                  @Nullable @Header(OfflineCacheInterceptor.SAVE_HEADER) String saveHeader,
+                                                                                  @Nullable @Header(OFFLINE_SAVE_HEADER) String saveHeader,
                                                                                   @NonNull @Query("page") String title,
                                                                                   @Nullable @Query("uselang") String useLang);
     /**
@@ -112,7 +116,7 @@ public interface Service {
      */
     @GET(MW_PAGE_SECTIONS_URL)
     @NonNull Call<MwMobileViewPageRemaining> getRemainingSectionsUrl(@Nullable @Header("Cache-Control") String cacheControl,
-                                                                      @Nullable @Header(OfflineCacheInterceptor.SAVE_HEADER) String saveHeader,
+                                                                      @Nullable @Header(OFFLINE_SAVE_HEADER) String saveHeader,
                                                                       @NonNull @Query("page") String title,
                                                                       @Nullable @Query("uselang") String useLang);
 
