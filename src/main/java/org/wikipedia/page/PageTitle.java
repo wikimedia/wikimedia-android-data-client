@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import com.google.gson.annotations.SerializedName;
 
 import org.wikipedia.dataclient.WikiSite;
-import org.wikipedia.settings.SiteInfoClient;
 import org.wikipedia.util.StringUtil;
 
 import java.io.UnsupportedEncodingException;
@@ -125,10 +124,6 @@ public class PageTitle implements Parcelable {
     private PageTitle(@Nullable String text, @NonNull WikiSite wiki, @Nullable String thumbUrl,
                       @Nullable PageProperties properties) {
         // FIXME: Does not handle mainspace articles with a colon in the title well at all
-        if (TextUtils.isEmpty(text)) {
-            // If empty, this refers to the main page.
-            text = SiteInfoClient.getMainPageForLang(wiki.languageCode());
-        }
 
         String[] fragParts = text.split("#", -1);
         text = fragParts[0];
@@ -223,11 +218,7 @@ public class PageTitle implements Parcelable {
     }
 
     public boolean isMainPage() {
-        if (properties != null) {
-            return properties.isMainPage();
-        }
-        String mainPageTitle = SiteInfoClient.getMainPageForLang(getWikiSite().languageCode());
-        return mainPageTitle.equals(getDisplayText());
+        return properties != null && properties.isMainPage();
     }
 
     public boolean isDisambiguationPage() {
