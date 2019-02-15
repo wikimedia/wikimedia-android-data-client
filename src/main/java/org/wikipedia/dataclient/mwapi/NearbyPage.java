@@ -4,7 +4,6 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.wikipedia.WikipediaApp;
 import org.wikipedia.dataclient.WikiSite;
 import org.wikipedia.page.PageTitle;
 
@@ -31,8 +30,8 @@ public class NearbyPage {
         }
     }
 
-    public NearbyPage(@NonNull String title, @Nullable Location location) {
-        this.title = new PageTitle(title, WikipediaApp.getInstance().getWikiSite());
+    public NearbyPage(@NonNull PageTitle title, @Nullable Location location) {
+        this.title = title;
         this.location = location;
     }
 
