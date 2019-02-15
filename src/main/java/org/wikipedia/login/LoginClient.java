@@ -4,13 +4,10 @@ import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.StringUtils;
-import org.wikipedia.R;
-import org.wikipedia.WikipediaApp;
 import org.wikipedia.dataclient.Service;
 import org.wikipedia.dataclient.ServiceFactory;
 import org.wikipedia.dataclient.WikiSite;
@@ -131,9 +128,6 @@ public class LoginClient {
             if (loginResult instanceof LoginOAuthResult) {
 
                 // TODO: Find a better way to boil up the warning about 2FA
-                Toast.makeText(WikipediaApp.getInstance(),
-                        R.string.login_2fa_other_workflow_error_msg, Toast.LENGTH_LONG).show();
-
                 throw new LoginFailedException(loginResult.getMessage());
 
             } else {
