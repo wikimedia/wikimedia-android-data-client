@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
-import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.dataclient.page.PageLead;
 import org.wikipedia.dataclient.page.PageLeadProperties;
 import org.wikipedia.dataclient.page.Protection;
@@ -21,6 +20,7 @@ import org.wikipedia.util.UriUtil;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import static org.wikipedia.dataclient.Service.PREFERRED_THUMB_SIZE;
 
@@ -183,11 +183,11 @@ public class RbPageLead implements PageLead, PageLeadProperties {
 
     @Override
     public boolean isEditable() {
-        return editable || isLoggedInUserAllowedToEdit();
+        return editable;
     }
 
-    private boolean isLoggedInUserAllowedToEdit() {
-        return protection != null && AccountUtil.isMemberOf(protection.getEditRoles());
+    public Set<String> getEditRoles() {
+        return protection != null ? protection.getEditRoles() : Collections.emptySet();
     }
 
     @Override
