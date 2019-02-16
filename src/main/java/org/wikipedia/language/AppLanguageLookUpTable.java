@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import org.wikipedia.R;
+import org.wikipedia.dataclient.R;
 
 import java.lang.ref.SoftReference;
 import java.util.Arrays;
