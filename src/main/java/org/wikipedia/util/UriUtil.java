@@ -1,7 +1,6 @@
 package org.wikipedia.util;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -9,7 +8,6 @@ import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.wikipedia.WikipediaApp;
 import org.wikipedia.dataclient.WikiSite;
 import org.wikipedia.page.PageTitle;
 import org.wikipedia.util.log.L;
@@ -19,11 +17,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 public final class UriUtil {
-    public static final String LOCAL_URL_SETTINGS = "#settings";
-    public static final String LOCAL_URL_LOGIN = "#login";
-    public static final String LOCAL_URL_CUSTOMIZE_FEED = "#customizefeed";
-    public static final String LOCAL_URL_LANGUAGES = "#languages";
-
     /**
      * Decodes a URL-encoded string into its UTF-8 equivalent. If the string cannot be decoded, the
      * original string is returned.
@@ -51,26 +44,6 @@ public final class UriUtil {
         }
     }
 
-    /**
-     * Open the specified URI in an external browser (even if our app's intent filter
-     * matches the given URI)
-     *
-     * @param context Context of the calling app
-     * @param uri URI to open in an external browser
-     */
-    public static void visitInExternalBrowser(final Context context, Uri uri) {
-        Intent chooserIntent = ShareUtil.createChooserIntent(new Intent(Intent.ACTION_VIEW, uri),
-                null, context);
-        if (chooserIntent == null) {
-            // This means that there was no way to handle this link.
-            // We will just show a toast now. FIXME: Make this more visible?
-            ShareUtil.showUnresolvableIntentMessage(context);
-        } else {
-            chooserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(chooserIntent);
-        }
-    }
-
     @NonNull public static String resolveProtocolRelativeUrl(@NonNull WikiSite wiki,
                                                              @NonNull String url) {
         String ret = resolveProtocolRelativeUrl(url);
@@ -90,7 +63,7 @@ public final class UriUtil {
      * @return A fully qualified, protocol specified URL
      */
     @NonNull public static String resolveProtocolRelativeUrl(@NonNull String url) {
-        return (url.startsWith("//") ? WikipediaApp.getInstance().getWikiSite().scheme() + ":" + url
+        return (url.startsWith("//") ? WikiSite.DEFAULT_SCHEME + ":" + url
                 : url);
     }
 
@@ -110,10 +83,6 @@ public final class UriUtil {
                 && uri.getAuthority().endsWith("wikipedia.org")
                 && !TextUtils.isEmpty(uri.getPath())
                 && uri.getPath().endsWith(".html"));
-    }
-
-    public static void handleExternalLink(final Context context, final Uri uri) {
-        visitInExternalBrowser(context, uri);
     }
 
     public static String getUrlWithProvenance(Context context, PageTitle title,
@@ -163,6 +132,5 @@ public final class UriUtil {
     }
 
     private UriUtil() {
-
     }
 }
