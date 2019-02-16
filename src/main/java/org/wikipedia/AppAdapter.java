@@ -3,13 +3,14 @@ package org.wikipedia;
 import android.support.annotation.NonNull;
 import okhttp3.OkHttpClient;
 import org.wikipedia.dataclient.SharedPreferenceCookieManager;
+import org.wikipedia.dataclient.WikiSite;
 import org.wikipedia.login.LoginResult;
 
 public abstract class AppAdapter {
 
     public abstract String getMediaWikiBaseUrl();
     public abstract String getRestbaseUriFormat();
-    public abstract OkHttpClient getOkHttpClient();
+    public abstract OkHttpClient getOkHttpClient(@NonNull WikiSite wikiSite);
     public abstract int getDesiredLeadImageDp();
 
     public abstract boolean isLoggedIn();
