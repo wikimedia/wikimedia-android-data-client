@@ -84,17 +84,7 @@ task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    options.addBooleanOption('Xdoclint:none', true)
-}
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
 artifacts {
-    archives javadocJar
     archives sourcesJar
 }
 
@@ -110,7 +100,8 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = 'maven'
-        name = 'wikimediadataclient'
+        name = 'wikimedia-android-data-client'
+        vcsUrl = 'https://github.com/wikimedia/wikimedia-android-data-client.git'
         licenses = ['Apache-2.0']
         version {
             name = "${VERSION_NAME}"
@@ -126,7 +117,8 @@ install {
             project {
                 packaging 'aar'
 
-                name 'WikimediaDataClient'
+                name 'wikimedia-android-data-client'
+                artifactId 'wikimedia-android-data-client'
                 description 'Android library for accessing the Wikimedia APIs.'
                 url 'https://github.com/wikimedia/wikimedia-android-data-client'
                 inceptionYear '2017'
