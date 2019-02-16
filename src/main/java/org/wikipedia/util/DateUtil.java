@@ -32,26 +32,6 @@ public final class DateUtil {
         return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ROOT);
     }
 
-    public static String getFeedCardDayHeaderDate(int age) {
-        return getDateStringWithSkeletonPattern(new UtcDate(age).baseCalendar().getTime(), "EEEE MMM d");
-    }
-
-    public static String getFeedCardDateString(@NonNull Context context, int age) {
-        return getFeedCardDateString(context, new UtcDate(age).baseCalendar());
-    }
-
-    public static String getFeedCardDateString(@NonNull Context context, @NonNull Calendar date) {
-        return getShortDateString(context, date.getTime());
-    }
-
-    public static String getFeedCardDateString(@NonNull Context context, @NonNull Date date) {
-        return getShortDateString(context, date);
-    }
-
-    public static String getFeedCardShortDateString(@NonNull Calendar date) {
-        return getExtraShortDateString(date.getTime());
-    }
-
     public static String getMonthOnlyDateString(@NonNull Date date) {
         return getDateStringWithSkeletonPattern(date, "MMMM d");
     }
@@ -60,11 +40,11 @@ public final class DateUtil {
         return getDateStringWithSkeletonPattern(date, "MMMM");
     }
 
-    private static String getExtraShortDateString(@NonNull Date date) {
+    public static String getExtraShortDateString(@NonNull Date date) {
         return getDateStringWithSkeletonPattern(date, "MMM d");
     }
 
-    private static String getDateStringWithSkeletonPattern(@NonNull Date date, @NonNull String pattern) {
+    public static String getDateStringWithSkeletonPattern(@NonNull Date date, @NonNull String pattern) {
         return new SimpleDateFormat(android.text.format.DateFormat.getBestDateTimePattern(Locale.getDefault(), pattern), Locale.getDefault()).format(date);
     }
 

@@ -46,17 +46,17 @@ public class ImageLicense implements Serializable {
         return licenseUrl;
     }
 
-    private boolean isLicenseCC() {
+    public boolean isLicenseCC() {
         return defaultString(license).toLowerCase(Locale.ENGLISH).startsWith(CREATIVE_COMMONS_PREFIX)
                 || defaultString(licenseShortName).toLowerCase(Locale.ENGLISH).startsWith(CREATIVE_COMMONS_PREFIX);
     }
 
-    private boolean isLicensePD() {
+    public boolean isLicensePD() {
         return defaultString(license).toLowerCase(Locale.ENGLISH).startsWith(PUBLIC_DOMAIN_PREFIX)
                 || defaultString(licenseShortName).toLowerCase(Locale.ENGLISH).startsWith(PUBLIC_DOMAIN_PREFIX);
     }
 
-    private boolean isLicenseCCBySa() {
+    public boolean isLicenseCCBySa() {
         return defaultString(license).toLowerCase(Locale.ENGLISH).replace("-", "").startsWith(CC_BY_SA)
                 || defaultString(licenseShortName).toLowerCase(Locale.ENGLISH).replace("-", "").startsWith(CC_BY_SA);
     }
