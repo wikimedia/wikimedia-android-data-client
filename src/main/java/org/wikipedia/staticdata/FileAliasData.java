@@ -1,6 +1,7 @@
-/* THIS IS AN AUTOMATICALLY GENERATED FILE
-   IF YOU MODIFY THIS BY HAND BE PREPARED!
-   TO HAVE YOUR CHANGES OVERWRITTEN */
+/*
+This file is auto-generated from a template (/scripts/templates).
+If you need to modify it, make sure to modify the template, not this file.
+*/
 package org.wikipedia.staticdata;
 
 import android.support.annotation.NonNull;
@@ -9,7 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class ../src/main/java/org/wikipedia/staticdata/FileAliasData {
+public final class FileAliasData {
     @NonNull private static final Map<String, String> DATA_MAP = Collections.unmodifiableMap(newMap());
 
     @NonNull public static String valueFor(String key) {
@@ -321,5 +322,5 @@ public final class ../src/main/java/org/wikipedia/staticdata/FileAliasData {
         return map;
     }
 
-    private ../src/main/java/org/wikipedia/staticdata/FileAliasData() { }
+    private FileAliasData() { }
 }

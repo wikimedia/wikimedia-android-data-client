@@ -53,7 +53,7 @@ class WikiList(object):
         }
         data.update(kwargs)
         rendered = self.template_env.get_template(template).render(**data)
-        out = codecs.open(class_name + u".java", u"w", u"utf-8")
+        out = codecs.open(u"../src/main/java/org/wikipedia/staticdata/" + class_name + u".java", u"w", u"utf-8")
         out.write(rendered)
         out.close()
 
@@ -177,7 +177,7 @@ chain(
     populate_aliases,
     populate_main_pages,
     postprocess_wikis,
-    render_template(u"basichash.java.jinja", u"../src/main/java/org/wikipedia/staticdata/SpecialAliasData", key=u"special_alias"),
-    render_template(u"basichash.java.jinja", u"../src/main/java/org/wikipedia/staticdata/FileAliasData", key=u"file_alias"),
-    render_template(u"basichash.java.jinja", u"../src/main/java/org/wikipedia/staticdata/MainPageNameData", key=u"main_page_name"),
+    render_template(u"basichash.java.jinja", u"SpecialAliasData", key=u"special_alias"),
+    render_template(u"basichash.java.jinja", u"FileAliasData", key=u"file_alias"),
+    render_template(u"basichash.java.jinja", u"MainPageNameData", key=u"main_page_name"),
 )
