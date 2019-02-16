@@ -29,7 +29,7 @@ allprojects {
 }
 
 version = "${VERSION_NAME}"
-group = "${GROUP}"
+group = "${GROUP_ID}"
 
 android {
     compileSdkVersion 28
@@ -100,7 +100,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = 'maven'
-        name = 'wikimedia-android-data-client'
+        name = "${ARTIFACT_ID}"
         vcsUrl = 'https://github.com/wikimedia/wikimedia-android-data-client.git'
         licenses = ['Apache-2.0']
         version {
@@ -117,11 +117,11 @@ install {
             project {
                 packaging 'aar'
 
-                name 'wikimedia-android-data-client'
-                artifactId 'wikimedia-android-data-client'
+                name "${ARTIFACT_ID}"
+                artifactId "${ARTIFACT_ID}"
                 description 'Android library for accessing the Wikimedia APIs.'
                 url 'https://github.com/wikimedia/wikimedia-android-data-client'
-                inceptionYear '2017'
+                inceptionYear '2019'
 
                 licenses {
                     license {
@@ -140,6 +140,7 @@ install {
         }
     }
 }
+
 repositories {
     mavenCentral()
 }
