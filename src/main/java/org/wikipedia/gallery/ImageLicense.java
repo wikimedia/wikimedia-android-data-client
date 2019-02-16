@@ -1,11 +1,8 @@
 package org.wikipedia.gallery;
 
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
-
-import org.wikipedia.R;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -62,23 +59,6 @@ public class ImageLicense implements Serializable {
     private boolean isLicenseCCBySa() {
         return defaultString(license).toLowerCase(Locale.ENGLISH).replace("-", "").startsWith(CC_BY_SA)
                 || defaultString(licenseShortName).toLowerCase(Locale.ENGLISH).replace("-", "").startsWith(CC_BY_SA);
-    }
-    /**
-     * Return an icon (drawable resource id) that corresponds to the type of license
-     * under which the specified Gallery item is provided.
-     * @return Resource ID of the icon to display.
-     */
-    @DrawableRes public int getLicenseIcon() {
-        if (isLicensePD()) {
-            return R.drawable.ic_license_pd;
-        }
-        if (isLicenseCCBySa()) {
-            return R.drawable.ic_license_by;
-        }
-        if (isLicenseCC()) {
-            return R.drawable.ic_license_cc;
-        }
-        return R.drawable.ic_license_cite;
     }
 
     public boolean hasLicenseInfo() {

@@ -3,8 +3,7 @@ package org.wikipedia.util.log;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-
-import org.wikipedia.util.ReleaseUtil;
+import org.wikipedia.AppAdapter;
 
 /** Logging utility like {@link Log} but with implied tags. */
 public final class L {
@@ -106,7 +105,7 @@ public final class L {
     }
 
     public static void logRemoteErrorIfProd(@NonNull Throwable t) {
-        if (ReleaseUtil.isProdRelease()) {
+        if (AppAdapter.get().logErrorsInsteadOfCrashing()) {
             logRemoteError(t);
         } else {
             throw new RuntimeException(t);

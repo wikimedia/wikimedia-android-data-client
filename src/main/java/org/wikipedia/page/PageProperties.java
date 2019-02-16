@@ -8,8 +8,8 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.wikipedia.AppAdapter;
 import org.wikipedia.dataclient.page.PageLeadProperties;
-import org.wikipedia.util.DimenUtil;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -59,7 +59,7 @@ public class PageProperties implements Parcelable {
         languageCount = core.getLanguageCount();
 
         // todo: don't hardcode this here
-        leadImageUrl = core.getLeadImageUrl(DimenUtil.calculateLeadImageWidth());
+        leadImageUrl = core.getLeadImageUrl(AppAdapter.get().getDesiredLeadImageDp());
 
         leadImageName = core.getLeadImageFileName();
         lastModified = new Date();

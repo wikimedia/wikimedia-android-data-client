@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
-import org.wikipedia.auth.AccountUtil;
+import org.wikipedia.AppAdapter;
 import org.wikipedia.dataclient.Service;
 import org.wikipedia.dataclient.ServiceFactory;
 import org.wikipedia.dataclient.SharedPreferenceCookieManager;
@@ -62,7 +62,7 @@ public class CsrfTokenClient {
     Call<MwQueryResponse> request(@NonNull Service service, @NonNull final Callback cb) {
         return requestToken(service, new CsrfTokenClient.Callback() {
             @Override public void success(@NonNull String token) {
-                if (AccountUtil.isLoggedIn() && token.equals(ANON_TOKEN)) {
+                if (AppAdapter.get().isLoggedIn() && token.equals(ANON_TOKEN)) {
                     retryWithLogin(new RuntimeException("App believes we're logged in, but got anonymous token."), cb);
                 } else {
                     cb.success(token);
@@ -82,13 +82,13 @@ public class CsrfTokenClient {
 
     private void retryWithLogin(@NonNull Throwable caught, @NonNull final Callback callback) {
         if (retries < MAX_RETRIES
-                && !TextUtils.isEmpty(AccountUtil.getUserName())
-                && !TextUtils.isEmpty(AccountUtil.getPassword())) {
+                && !TextUtils.isEmpty(AppAdapter.get().getUserName())
+                && !TextUtils.isEmpty(AppAdapter.get().getPassword())) {
             retries++;
 
             SharedPreferenceCookieManager.getInstance().clearAllCookies();
 
-            login(AccountUtil.getUserName(), AccountUtil.getPassword(), () -> {
+            login(AppAdapter.get().getUserName(), AppAdapter.get().getPassword(), () -> {
                 L.i("retrying...");
                 request(callback);
             }, callback);
@@ -105,7 +105,7 @@ public class CsrfTokenClient {
                     @Override
                     public void success(@NonNull LoginResult loginResult) {
                         if (loginResult.pass()) {
-                            AccountUtil.updateAccount(null, loginResult);
+                            AppAdapter.get().updateAccount(loginResult);
                             retryCallback.retry();
                         } else {
                             callback.failure(new LoginClient.LoginFailedException(loginResult.getMessage()));
@@ -137,8 +137,8 @@ public class CsrfTokenClient {
             try {
                 if (retry > 0) {
                     // Log in explicitly
-                    new LoginClient().loginBlocking(loginWikiSite, AccountUtil.getUserName(),
-                            AccountUtil.getPassword(), "");
+                    new LoginClient().loginBlocking(loginWikiSite, AppAdapter.get().getUserName(),
+                            AppAdapter.get().getPassword(), "");
                 }
 
                 Response<MwQueryResponse> response = service.getCsrfToken().execute();
@@ -147,7 +147,7 @@ public class CsrfTokenClient {
                     continue;
                 }
                 token = response.body().query().csrfToken();
-                if (AccountUtil.isLoggedIn() && token.equals(ANON_TOKEN)) {
+                if (AppAdapter.get().isLoggedIn() && token.equals(ANON_TOKEN)) {
                     throw new RuntimeException("App believes we're logged in, but got anonymous token.");
                 }
                 break;
