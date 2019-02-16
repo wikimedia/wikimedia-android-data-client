@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class FileAliasData {
+public final class ../src/main/java/org/wikipedia/staticdata/FileAliasData {
     @NonNull private static final Map<String, String> DATA_MAP = Collections.unmodifiableMap(newMap());
 
     @NonNull public static String valueFor(String key) {
@@ -21,7 +21,7 @@ public final class FileAliasData {
 
     @SuppressWarnings({"checkstyle:methodlength", "SpellCheckingInspection"})
     private static Map<String, String> newMap() {
-        final int size = 294;
+        final int size = 295;
         Map<String, String> map = new HashMap<>(size);
         map.put("ab", "Афаил");
         map.put("ace", "Beureukaih");
@@ -251,6 +251,7 @@ public final class FileAliasData {
         map.put("se", "Fiila");
         map.put("sg", "Fichier");
         map.put("sh", "Datoteka");
+        map.put("shn", "ၾၢႆႇ");
         map.put("si", "ගොනුව");
         map.put("simple", "File");
         map.put("sk", "Súbor");
@@ -320,5 +321,5 @@ public final class FileAliasData {
         return map;
     }
 
-    private FileAliasData() { }
+    private ../src/main/java/org/wikipedia/staticdata/FileAliasData() { }
 }

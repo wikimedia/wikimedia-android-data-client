@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class MainPageNameData {
+public final class ../src/main/java/org/wikipedia/staticdata/MainPageNameData {
     @NonNull private static final Map<String, String> DATA_MAP = Collections.unmodifiableMap(newMap());
 
     @NonNull public static String valueFor(String key) {
@@ -21,10 +21,10 @@ public final class MainPageNameData {
 
     @SuppressWarnings({"checkstyle:methodlength", "SpellCheckingInspection"})
     private static Map<String, String> newMap() {
-        final int size = 294;
+        final int size = 295;
         Map<String, String> map = new HashMap<>(size);
         map.put("ab", "Ихадоу адаҟьа");
-        map.put("ace", "Ôn Keuë");
+        map.put("ace", "Ôn Keue");
         map.put("ady", "НэкӀубгъо шъхьаӀ");
         map.put("af", "Tuisblad");
         map.put("ak", "Krataafa Titiriw");
@@ -174,7 +174,7 @@ public final class MainPageNameData {
         map.put("lmo", "Pagina principala");
         map.put("ln", "Lokásá ya libosó");
         map.put("lo", "ໜ້າຫຼັກ");
-        map.put("lrc", "سرآسۊنٱ");
+        map.put("lrc", "سرآسونٱ");
         map.put("lt", "Pagrindinis puslapis");
         map.put("ltg", "Suoku puslopa");
         map.put("lv", "Sākumlapa");
@@ -251,6 +251,7 @@ public final class MainPageNameData {
         map.put("se", "Portála:Ovdasiidu");
         map.put("sg", "Gä nzönî");
         map.put("sh", "Glavna stranica");
+        map.put("shn", "ၼႃႈႁူဝ်ႁႅၵ်ႈ");
         map.put("si", "මුල් පිටුව");
         map.put("simple", "Main Page");
         map.put("sk", "Hlavná stránka");
@@ -320,5 +321,5 @@ public final class MainPageNameData {
         return map;
     }
 
-    private MainPageNameData() { }
+    private ../src/main/java/org/wikipedia/staticdata/MainPageNameData() { }
 }
