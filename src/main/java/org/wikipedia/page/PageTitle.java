@@ -123,8 +123,10 @@ public class PageTitle implements Parcelable {
 
     private PageTitle(@Nullable String text, @NonNull WikiSite wiki, @Nullable String thumbUrl,
                       @Nullable PageProperties properties) {
+        if (text == null) {
+            text = "";
+        }
         // FIXME: Does not handle mainspace articles with a colon in the title well at all
-
         String[] fragParts = text.split("#", -1);
         text = fragParts[0];
         if (fragParts.length > 1) {
