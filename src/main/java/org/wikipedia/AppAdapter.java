@@ -1,10 +1,12 @@
 package org.wikipedia;
 
 import android.support.annotation.NonNull;
-import okhttp3.OkHttpClient;
+
 import org.wikipedia.dataclient.SharedPreferenceCookieManager;
 import org.wikipedia.dataclient.WikiSite;
 import org.wikipedia.login.LoginResult;
+
+import okhttp3.OkHttpClient;
 
 public abstract class AppAdapter {
 

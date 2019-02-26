@@ -45,10 +45,10 @@ public interface Service {
 
     int PREFERRED_THUMB_SIZE = 320;
 
-    public static final String OFFLINE_SAVE_HEADER = "X-Offline-Save";
-    public static final String OFFLINE_SAVE_HEADER_SAVE = "save";
-    public static final String OFFLINE_SAVE_HEADER_DELETE = "delete";
-    public static final String OFFLINE_SAVE_HEADER_NONE = "none";
+    String OFFLINE_SAVE_HEADER = "X-Offline-Save";
+    String OFFLINE_SAVE_HEADER_SAVE = "save";
+    String OFFLINE_SAVE_HEADER_DELETE = "delete";
+    String OFFLINE_SAVE_HEADER_NONE = "none";
 
     // ------- MobileView page content -------
 

@@ -1,7 +1,5 @@
 package org.wikipedia.dataclient.restbase.page;
 
-import android.net.Uri;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.wikipedia.feed.mostread.MostReadArticlesTest;

@@ -3,6 +3,7 @@ package org.wikipedia.util.log;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
 import org.wikipedia.AppAdapter;
 
 /** Logging utility like {@link Log} but with implied tags. */
