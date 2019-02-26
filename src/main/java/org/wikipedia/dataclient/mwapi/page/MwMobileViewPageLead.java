@@ -37,7 +37,8 @@ public class MwMobileViewPageLead extends MwResponse implements PageLead {
     public Page toPage(@NonNull PageTitle title) {
         return new Page(adjustPageTitle(title, title.getPrefixedText()),
                 mobileview.getSections(),
-                mobileview.toPageProperties());
+                mobileview.toPageProperties(),
+                false);
     }
 
     private PageTitle adjustPageTitle(@NonNull PageTitle title, @NonNull String originalPrefixedText) {

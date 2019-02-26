@@ -2,7 +2,6 @@ package org.wikipedia.page;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
 
 import java.util.List;
 
@@ -10,19 +9,17 @@ import java.util.List;
  * Represents a particular page along with its full contents.
  */
 public class Page {
-    @VisibleForTesting static final int MEDIAWIKI_ORIGIN = 0;
-    @VisibleForTesting static final int RESTBASE_ORIGIN = 1;
-
     @NonNull private final PageTitle title;
     @NonNull private final List<Section> sections;
     @NonNull private final PageProperties pageProperties;
+    private final boolean fromRestBase;
 
     /** Regular constructor */
-    public Page(@NonNull PageTitle title, @NonNull List<Section> sections,
-                @NonNull PageProperties pageProperties) {
+    public Page(@NonNull PageTitle title, @NonNull List<Section> sections, @NonNull PageProperties pageProperties, boolean fromRestBase) {
         this.title = title;
         this.sections = sections;
         this.pageProperties = pageProperties;
+        this.fromRestBase = fromRestBase;
     }
 
     @NonNull public PageTitle getTitle() {
@@ -63,5 +60,9 @@ public class Page {
 
     public boolean isProtected() {
         return !getPageProperties().canEdit();
+    }
+
+    public boolean isFromRestBase() {
+        return fromRestBase;
     }
 }

@@ -53,7 +53,8 @@ public class RbPageLead implements PageLead, PageLeadProperties {
     public Page toPage(PageTitle title) {
         return new Page(adjustPageTitle(title),
                 getSections(),
-                toPageProperties());
+                toPageProperties(),
+                true);
     }
 
     PageTitle adjustPageTitle(PageTitle title) {
