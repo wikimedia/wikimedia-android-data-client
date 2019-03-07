@@ -285,7 +285,7 @@ public interface Service {
     @POST(MW_API_PREFIX + "action=edit&nocreate=")
     @SuppressWarnings("checkstyle:parameternumber")
     @NonNull Call<Edit> postEditSubmit(@NonNull @Field("title") String title,
-                                       @Field("section") int section,
+                                       @Nullable @Field("section") Integer section,
                                        @NonNull @Field("summary") String summary,
                                        @Nullable @Field("assert") String user,
                                        @NonNull @Field("text") String text,
@@ -293,6 +293,30 @@ public interface Service {
                                        @NonNull @Field("token") String token,
                                        @Nullable @Field("captchaid") String captchaId,
                                        @Nullable @Field("captchaword") String captchaWord);
+
+    @FormUrlEncoded
+    @Headers("Cache-Control: no-cache")
+    @POST(MW_API_PREFIX + "action=edit&nocreate=")
+    @NonNull Call<Edit> postAppendEdit(@NonNull @Field("title") String title,
+                                       @NonNull @Field("summary") String summary,
+                                       @NonNull @Field("appendtext") String text,
+                                       @NonNull @Field("token") String token);
+
+    @FormUrlEncoded
+    @Headers("Cache-Control: no-cache")
+    @POST(MW_API_PREFIX + "action=edit&nocreate=")
+    @NonNull Call<Edit> postPrependEdit(@NonNull @Field("title") String title,
+                                        @NonNull @Field("summary") String summary,
+                                        @NonNull @Field("prependtext") String text,
+                                        @NonNull @Field("token") String token);
+
+    @Headers("Cache-Control: no-cache")
+    @POST(MW_API_PREFIX + "action=tag")
+    @FormUrlEncoded
+    Observable<MwPostResponse> addEditTag(@NonNull @Field("revid") String revId,
+                                          @NonNull @Field("add") String tagName,
+                                          @NonNull @Field("reason") String reason,
+                                          @NonNull @Field("token") String token);
 
 
     // ------- Wikidata -------
@@ -325,4 +349,15 @@ public interface Service {
                                              @NonNull @Field("value") String newDescription,
                                              @NonNull @Field("token") String token,
                                              @Nullable @Field("assert") String user);
+
+    @Headers("Cache-Control: no-cache")
+    @POST(MW_API_PREFIX + "action=wbcreateclaim&errorlang=uselang")
+    @FormUrlEncoded
+    Observable<MwPostResponse> postCreateClaim(@NonNull @Field("entity") String entity,
+                                               @NonNull @Field("snaktype") String snakType,
+                                               @NonNull @Field("property") String property,
+                                               @NonNull @Field("value") String value,
+                                               @NonNull @Field("uselang") String useLang,
+                                               @NonNull @Field("token") String token);
+
 }
