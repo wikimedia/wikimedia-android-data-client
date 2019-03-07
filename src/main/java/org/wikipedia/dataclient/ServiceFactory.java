@@ -29,6 +29,11 @@ public final class ServiceFactory {
         return s;
     }
 
+    public static <T> T get(@NonNull WikiSite wiki, Class<T> service) {
+        Retrofit r = createRetrofit(wiki, TextUtils.isEmpty(AppAdapter.get().getMediaWikiBaseUrl()) ? wiki.url() + "/" : AppAdapter.get().getMediaWikiBaseUrl());
+        return r.create(service);
+    }
+
     public static RestService getRest(@NonNull WikiSite wiki) {
         long hashCode = wiki.hashCode();
         if (REST_SERVICE_CACHE.get(hashCode) != null) {
