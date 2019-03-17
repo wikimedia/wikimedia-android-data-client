@@ -25,6 +25,14 @@ public class ExtMetadata {
     @SuppressWarnings("unused") @SerializedName("Restrictions") @Nullable private Values restrictions;
     @SuppressWarnings("unused") @SerializedName("License") @Nullable private Values license;
 
+    @Nullable public Values dateTime() {
+        return dateTime;
+    }
+
+    @Nullable public Values dateTimeOriginal() {
+        return dateTimeOriginal;
+    }
+
     @Nullable public Values licenseShortName() {
         return licenseShortName;
     }
