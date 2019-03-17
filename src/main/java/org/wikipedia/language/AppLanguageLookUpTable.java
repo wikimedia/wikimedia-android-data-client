@@ -87,7 +87,7 @@ public class AppLanguageLookUpTable {
         return name;
     }
 
-    private List<String> getCanonicalNames() {
+    public List<String> getCanonicalNames() {
         List<String> names = canonicalNamesRef.get();
         if (names == null) {
             names = getStringList(R.array.preference_language_canonical_names);
@@ -96,7 +96,7 @@ public class AppLanguageLookUpTable {
         return names;
     }
 
-    private List<String> getLocalizedNames() {
+    public List<String> getLocalizedNames() {
         List<String> names = localizedNamesRef.get();
         if (names == null) {
             names = getStringList(R.array.preference_language_local_names);
