@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class ExtMetadata {
     @SuppressWarnings("unused") @SerializedName("DateTime") @Nullable private Values dateTime;
     @SuppressWarnings("unused") @SerializedName("ObjectName") @Nullable private Values objectName;
@@ -25,53 +27,53 @@ public class ExtMetadata {
     @SuppressWarnings("unused") @SerializedName("Restrictions") @Nullable private Values restrictions;
     @SuppressWarnings("unused") @SerializedName("License") @Nullable private Values license;
 
-    @Nullable public Values dateTime() {
-        return dateTime;
+    @NonNull public Values dateTime() {
+        return dateTime != null ? dateTime : new Values();
     }
 
-    @Nullable public Values dateTimeOriginal() {
-        return dateTimeOriginal;
+    @NonNull public Values dateTimeOriginal() {
+        return dateTimeOriginal != null ? dateTimeOriginal : new Values();
     }
 
-    @Nullable public Values licenseShortName() {
-        return licenseShortName;
+    @NonNull public Values licenseShortName() {
+        return licenseShortName != null ? licenseShortName : new Values();
     }
 
-    @Nullable public Values licenseUrl() {
-        return licenseUrl;
+    @NonNull public Values licenseUrl() {
+        return licenseUrl != null ? licenseUrl : new Values();
     }
 
-    @Nullable public Values license() {
-        return license;
+    @NonNull public Values license() {
+        return license != null ? license : new Values();
     }
 
-    @Nullable public Values imageDescription() {
-        return imageDescription;
+    @NonNull public Values imageDescription() {
+        return imageDescription != null ? imageDescription : new Values();
     }
 
-    @Nullable public Values objectName() {
-        return objectName;
+    @NonNull public Values objectName() {
+        return objectName != null ? objectName : new Values();
     }
 
-    @Nullable public Values usageTerms() {
-        return usageTerms;
+    @NonNull public Values usageTerms() {
+        return usageTerms != null ? usageTerms : new Values();
     }
 
-    @Nullable public Values artist() {
-        return artist;
+    @NonNull public Values artist() {
+        return artist != null ? artist : new Values();
     }
 
     public class Values {
-        @SuppressWarnings("unused,NullableProblems") @NonNull private String value;
-        @SuppressWarnings("unused,NullableProblems") @NonNull private String source;
-        @SuppressWarnings("unused,NullableProblems") @NonNull private String hidden;
+        @SuppressWarnings("unused,NullableProblems") @Nullable private String value;
+        @SuppressWarnings("unused,NullableProblems") @Nullable private String source;
+        @SuppressWarnings("unused,NullableProblems") @Nullable private String hidden;
 
         @NonNull public String value() {
-            return value;
+            return StringUtils.defaultString(value);
         }
 
         @NonNull public String source() {
-            return source;
+            return StringUtils.defaultString(source);
         }
     }
 }
