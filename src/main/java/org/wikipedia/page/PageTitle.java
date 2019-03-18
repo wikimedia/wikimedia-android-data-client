@@ -211,6 +211,10 @@ public class PageTitle implements Parcelable {
         return getPrefixedText().replace("_", " ");
     }
 
+    @NonNull public String getDisplayTextWithoutNamespace() {
+        return text.replace("_", " ");
+    }
+
     public boolean hasProperties() {
         return properties != null;
     }
