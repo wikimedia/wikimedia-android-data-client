@@ -15,7 +15,7 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
 
-class EditClient {
+public class EditClient {
     public interface Callback {
         void success(@NonNull Call<Edit> call, @NonNull EditResult result);
         void failure(@NonNull Call<Edit> call, @NonNull Throwable caught);
