@@ -1,6 +1,7 @@
 package org.wikipedia.dataclient;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.util.LruCache;
 import android.text.TextUtils;
 
@@ -30,7 +31,11 @@ public final class ServiceFactory {
     }
 
     public static <T> T get(@NonNull WikiSite wiki, Class<T> service) {
-        Retrofit r = createRetrofit(wiki, TextUtils.isEmpty(AppAdapter.get().getMediaWikiBaseUrl()) ? wiki.url() + "/" : AppAdapter.get().getMediaWikiBaseUrl());
+        return get(wiki, AppAdapter.get().getMediaWikiBaseUrl(), service);
+    }
+
+    public static <T> T get(@NonNull WikiSite wiki, @Nullable String baseUrl, Class<T> service) {
+        Retrofit r = createRetrofit(wiki, TextUtils.isEmpty(baseUrl) ? wiki.url() + "/" : baseUrl);
         return r.create(service);
     }
 
