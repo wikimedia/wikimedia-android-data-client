@@ -63,6 +63,11 @@ public class ExtMetadata {
         return artist != null ? artist : new Values();
     }
 
+    @Nullable
+    public Values categories() {
+        return categories != null ? categories : new Values();
+    }
+
     public class Values {
         @SuppressWarnings("unused,NullableProblems") @Nullable private String value;
         @SuppressWarnings("unused,NullableProblems") @Nullable private String source;
