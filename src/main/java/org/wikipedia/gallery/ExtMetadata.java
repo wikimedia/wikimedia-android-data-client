@@ -7,13 +7,15 @@ import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Map;
+
 public class ExtMetadata {
     @SuppressWarnings("unused") @SerializedName("DateTime") @Nullable private Values dateTime;
     @SuppressWarnings("unused") @SerializedName("ObjectName") @Nullable private Values objectName;
     @SuppressWarnings("unused") @SerializedName("CommonsMetadataExtension") @Nullable private Values commonsMetadataExtension;
     @SuppressWarnings("unused") @SerializedName("Categories") @Nullable private Values categories;
     @SuppressWarnings("unused") @SerializedName("Assessments") @Nullable private Values assessments;
-    @SuppressWarnings("unused") @SerializedName("ImageDescription") @Nullable private Values imageDescription;
+    @SuppressWarnings("unused") @SerializedName("ImageDescription") @Nullable private MapValues imageDescription;
     @SuppressWarnings("unused") @SerializedName("DateTimeOriginal") @Nullable private Values dateTimeOriginal;
     @SuppressWarnings("unused") @SerializedName("Artist") @Nullable private Values artist;
     @SuppressWarnings("unused") @SerializedName("Credit") @Nullable private Values credit;
@@ -47,8 +49,8 @@ public class ExtMetadata {
         return license != null ? license : new Values();
     }
 
-    @NonNull public Values imageDescription() {
-        return imageDescription != null ? imageDescription : new Values();
+    @NonNull public MapValues imageDescription() {
+        return imageDescription != null ? imageDescription : new MapValues();
     }
 
     @NonNull public Values objectName() {
@@ -70,6 +72,19 @@ public class ExtMetadata {
 
         @NonNull public String value() {
             return StringUtils.defaultString(value);
+        }
+
+        @NonNull public String source() {
+            return StringUtils.defaultString(source);
+        }
+    }
+
+    public class MapValues {
+        @SuppressWarnings("unused,NullableProblems") @Nullable private Map<String, String> value;
+        @SuppressWarnings("unused,NullableProblems") @Nullable private String source;
+
+        @NonNull public Map<String, String> value() {
+            return value;
         }
 
         @NonNull public String source() {
