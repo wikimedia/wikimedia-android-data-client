@@ -132,6 +132,8 @@ public class MwQueryPage extends BaseModel {
     }
 
     public static class Revision {
+        @SerializedName("revid") private String revisionId;
+        @SerializedName("user") private String user;
         @SuppressWarnings("unused,NullableProblems") @SerializedName("contentformat") @NonNull private String contentFormat;
         @SuppressWarnings("unused,NullableProblems") @SerializedName("contentmodel") @NonNull private String contentModel;
         @SuppressWarnings("unused,NullableProblems") @SerializedName("timestamp") @NonNull private String timeStamp;
@@ -143,6 +145,14 @@ public class MwQueryPage extends BaseModel {
 
         @NonNull public String timeStamp() {
             return StringUtils.defaultString(timeStamp);
+        }
+
+        public String getRevisionId() {
+            return revisionId;
+        }
+
+        public String getUser() {
+            return user;
         }
     }
 
