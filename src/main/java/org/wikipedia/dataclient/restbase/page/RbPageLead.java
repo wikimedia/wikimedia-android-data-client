@@ -27,26 +27,27 @@ import static org.wikipedia.dataclient.Service.PREFERRED_THUMB_SIZE;
 /**
  * Gson POJO for loading the first stage of page content.
  */
+@SuppressWarnings("unused")
 public class RbPageLead implements PageLead, PageLeadProperties {
-    @SuppressWarnings("unused") private int ns;
-    @SuppressWarnings("unused") private int id;
-    @SuppressWarnings("unused") private long revision;
-    @SuppressWarnings("unused") @Nullable private String lastmodified;
-    @SuppressWarnings("unused") @Nullable private String displaytitle;
-    @SuppressWarnings("unused") @Nullable private String redirected;
-    @SuppressWarnings("unused") @Nullable private String normalizedtitle;
-    @SuppressWarnings("unused") @Nullable @SerializedName("wikibase_item") private String wikiBaseItem;
-    @SuppressWarnings("unused") @Nullable @SerializedName("pronunciation") private TitlePronunciation titlePronunciation;
-    @SuppressWarnings("unused") @Nullable @JsonAdapter(GeoTypeAdapter.class) private Location geo;
-    @SuppressWarnings("unused") private int languagecount;
-    @SuppressWarnings("unused") private boolean editable;
-    @SuppressWarnings("unused") private boolean mainpage;
-    @SuppressWarnings("unused") private boolean disambiguation;
-    @SuppressWarnings("unused") @Nullable private String description;
-    @SuppressWarnings("unused") @Nullable @SerializedName("description_source") private String descriptionSource;
-    @SuppressWarnings("unused") @Nullable private Image image;
-    @SuppressWarnings("unused") @Nullable private Protection protection;
-    @SuppressWarnings("unused") @Nullable private List<Section> sections;
+    private int ns;
+    private int id;
+    private long revision;
+    @Nullable private String lastmodified;
+    @Nullable private String displaytitle;
+    @Nullable private String redirected;
+    @Nullable private String normalizedtitle;
+    @Nullable @SerializedName("wikibase_item") private String wikiBaseItem;
+    @Nullable @SerializedName("pronunciation") private TitlePronunciation titlePronunciation;
+    @Nullable @JsonAdapter(GeoTypeAdapter.class) private Location geo;
+    private int languagecount;
+    private boolean editable;
+    private boolean mainpage;
+    private boolean disambiguation;
+    @Nullable private String description;
+    @Nullable @SerializedName("description_source") private String descriptionSource;
+    @Nullable private Image image;
+    @Nullable private Protection protection;
+    @Nullable private List<Section> sections;
 
     /** Note: before using this check that #getMobileview != null */
     @Override
