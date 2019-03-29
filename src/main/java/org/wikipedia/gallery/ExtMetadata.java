@@ -7,27 +7,28 @@ import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.StringUtils;
 
+@SuppressWarnings("unused")
 public class ExtMetadata {
-    @SuppressWarnings("unused") @SerializedName("DateTime") @Nullable private Values dateTime;
-    @SuppressWarnings("unused") @SerializedName("ObjectName") @Nullable private Values objectName;
-    @SuppressWarnings("unused") @SerializedName("CommonsMetadataExtension") @Nullable private Values commonsMetadataExtension;
-    @SuppressWarnings("unused") @SerializedName("Categories") @Nullable private Values categories;
-    @SuppressWarnings("unused") @SerializedName("Assessments") @Nullable private Values assessments;
-    @SuppressWarnings("unused") @SerializedName("GPSLatitude") @Nullable private Values gpsLatitude;
-    @SuppressWarnings("unused") @SerializedName("GPSLongitude") @Nullable private Values gpsLongitude;
-    @SuppressWarnings("unused") @SerializedName("ImageDescription") @Nullable private Values imageDescription;
-    @SuppressWarnings("unused") @SerializedName("DateTimeOriginal") @Nullable private Values dateTimeOriginal;
-    @SuppressWarnings("unused") @SerializedName("Artist") @Nullable private Values artist;
-    @SuppressWarnings("unused") @SerializedName("Credit") @Nullable private Values credit;
-    @SuppressWarnings("unused") @SerializedName("Permission") @Nullable private Values permission;
-    @SuppressWarnings("unused") @SerializedName("AuthorCount") @Nullable private Values authorCount;
-    @SuppressWarnings("unused") @SerializedName("LicenseShortName") @Nullable private Values licenseShortName;
-    @SuppressWarnings("unused") @SerializedName("UsageTerms") @Nullable private Values usageTerms;
-    @SuppressWarnings("unused") @SerializedName("LicenseUrl") @Nullable private Values licenseUrl;
-    @SuppressWarnings("unused") @SerializedName("AttributionRequired") @Nullable private Values attributionRequired;
-    @SuppressWarnings("unused") @SerializedName("Copyrighted") @Nullable private Values copyrighted;
-    @SuppressWarnings("unused") @SerializedName("Restrictions") @Nullable private Values restrictions;
-    @SuppressWarnings("unused") @SerializedName("License") @Nullable private Values license;
+    @SerializedName("DateTime") @Nullable private Values dateTime;
+    @SerializedName("ObjectName") @Nullable private Values objectName;
+    @SerializedName("CommonsMetadataExtension") @Nullable private Values commonsMetadataExtension;
+    @SerializedName("Categories") @Nullable private Values categories;
+    @SerializedName("Assessments") @Nullable private Values assessments;
+    @SerializedName("GPSLatitude") @Nullable private Values gpsLatitude;
+    @SerializedName("GPSLongitude") @Nullable private Values gpsLongitude;
+    @SerializedName("ImageDescription") @Nullable private Values imageDescription;
+    @SerializedName("DateTimeOriginal") @Nullable private Values dateTimeOriginal;
+    @SerializedName("Artist") @Nullable private Values artist;
+    @SerializedName("Credit") @Nullable private Values credit;
+    @SerializedName("Permission") @Nullable private Values permission;
+    @SerializedName("AuthorCount") @Nullable private Values authorCount;
+    @SerializedName("LicenseShortName") @Nullable private Values licenseShortName;
+    @SerializedName("UsageTerms") @Nullable private Values usageTerms;
+    @SerializedName("LicenseUrl") @Nullable private Values licenseUrl;
+    @SerializedName("AttributionRequired") @Nullable private Values attributionRequired;
+    @SerializedName("Copyrighted") @Nullable private Values copyrighted;
+    @SerializedName("Restrictions") @Nullable private Values restrictions;
+    @SerializedName("License") @Nullable private Values license;
 
     @NonNull public Values dateTime() {
         return dateTime != null ? dateTime : new Values();
@@ -65,18 +66,15 @@ public class ExtMetadata {
         return artist != null ? artist : new Values();
     }
 
-    @NonNull
-    public Values categories() {
+    @NonNull public Values categories() {
         return categories != null ? categories : new Values();
     }
 
-    @NonNull
-    public Values gpsLatitude() {
+    @NonNull public Values gpsLatitude() {
         return gpsLatitude != null ? gpsLatitude : new Values();
     }
 
-    @NonNull
-    public Values gpsLongitude() {
+    @NonNull public Values gpsLongitude() {
         return gpsLongitude != null ? gpsLongitude : new Values();
     }
 
