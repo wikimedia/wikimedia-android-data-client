@@ -187,6 +187,13 @@ public interface Service {
     @NonNull Observable<MwQueryResponse> getCategoryMembers(@NonNull @Query("cmtitle") String title,
                                                             @Nullable @Query("cmcontinue") String continueStr);
 
+    @FormUrlEncoded
+    @POST(MW_API_PREFIX + "action=thank")
+    @NonNull Observable<MwPostResponse> thank(@Nullable @Field("rev") String rev,
+                                              @Nullable @Field("log") String log,
+                                              @NonNull @Field("token") String token,
+                                              @Nullable @Field("source") String source);
+
 
     // ------- CSRF, Login, and Create Account -------
 
