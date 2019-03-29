@@ -22,6 +22,7 @@ import java.util.Map;
 
 public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapter.PostProcessable {
     @SuppressWarnings("unused") @Nullable private List<MwQueryPage> pages;
+    private List<RecentChange> recentchanges;
     @SuppressWarnings("unused") @Nullable private List<Redirect> redirects;
     @SuppressWarnings("unused") @Nullable private List<ConvertedTitle> converted;
     @SuppressWarnings("unused") @SerializedName("userinfo") private UserInfo userInfo;
@@ -85,6 +86,10 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
             }
         }
         return captchaId;
+    }
+
+    public List<RecentChange> getRecentchanges() {
+        return recentchanges;
     }
 
     @Nullable public ListUserResponse getUserResponse(@NonNull String userName) {
