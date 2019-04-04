@@ -159,8 +159,8 @@ public interface Service {
     @GET(MW_API_PREFIX + "action=query&prop=langlinks&lllimit=500&redirects=&converttitles=")
     @NonNull Observable<MwQueryResponse> getLangLinks(@NonNull @Query("titles") String title);
 
-    @GET(MW_API_PREFIX + "action=query&prop=description")
-    @NonNull Observable<MwQueryResponse> getDescription(@NonNull @Query("titles") String titles);
+    @GET(MW_API_PREFIX + "action=query&prop=description|pageprops&redirects")
+    @NonNull Observable<MwQueryResponse> getPagePropsAndDescription(@NonNull @Query("titles") String titles);
 
     @GET(MW_API_PREFIX + "action=query&prop=imageinfo&iiprop=extmetadata")
     @NonNull Observable<MwQueryResponse> getImageExtMetadata(@NonNull @Query("titles") String titles);
@@ -324,6 +324,19 @@ public interface Service {
                                           @NonNull @Field("add") String tagName,
                                           @NonNull @Field("reason") String reason,
                                           @NonNull @Field("token") String token);
+
+    @Headers("Cache-Control: no-cache")
+    @GET(MW_API_PREFIX + "action=query&meta=wikimediaeditortaskscounts")
+    @NonNull Observable<MwQueryResponse> getEditorTaskCounts();
+
+    @Headers("Cache-Control: no-cache")
+    @GET(MW_API_PREFIX + "action=query&generator=wikimediaeditortaskssuggestions&prop=pageterms&gwetstask=missingdescriptions&gwetslimit=5")
+    @NonNull Observable<MwQueryResponse> getEditorTaskMissingDescriptions(@NonNull @Query("gwetstarget") String targetLanguage);
+
+    @Headers("Cache-Control: no-cache")
+    @GET(MW_API_PREFIX + "action=query&generator=wikimediaeditortaskssuggestions&prop=pageterms&gwetstask=descriptiontranslations&gwetslimit=5")
+    @NonNull Observable<MwQueryResponse> getEditorTaskTranslatableDescriptions(@NonNull @Query("gwetssource") String sourceLanguage,
+                                                                               @NonNull @Query("gwetstarget") String targetLanguage);
 
 
     // ------- Wikidata -------

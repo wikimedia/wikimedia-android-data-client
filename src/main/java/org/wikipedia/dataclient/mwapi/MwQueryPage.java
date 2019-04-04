@@ -27,6 +27,7 @@ public class MwQueryPage extends BaseModel {
     @SuppressWarnings("unused") @Nullable private List<Coordinates> coordinates;
     @SuppressWarnings("unused") @Nullable private List<Category> categories;
     @SuppressWarnings("unused") @Nullable private PageProps pageprops;
+    @SuppressWarnings("unused") @Nullable private PageTerms terms;
     @SuppressWarnings("unused") @Nullable private String extract;
     @SuppressWarnings("unused") @Nullable private Thumbnail thumbnail;
     @SuppressWarnings("unused") @Nullable private String description;
@@ -68,6 +69,10 @@ public class MwQueryPage extends BaseModel {
             coordinates.removeAll(Collections.singleton(null));
         }
         return coordinates;
+    }
+
+    public List<String> labels() {
+        return terms != null && terms.label != null ? terms.label : Collections.emptyList();
     }
 
     public int pageId() {
@@ -223,5 +228,10 @@ public class MwQueryPage extends BaseModel {
         public boolean hidden() {
             return hidden;
         }
+    }
+
+    public static class PageTerms {
+        @SuppressWarnings("unused") private List<String> alias;
+        @SuppressWarnings("unused") private List<String> label;
     }
 }
