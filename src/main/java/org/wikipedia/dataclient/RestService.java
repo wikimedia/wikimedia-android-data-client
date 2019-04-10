@@ -1,8 +1,5 @@
 package org.wikipedia.dataclient;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import org.wikipedia.dataclient.restbase.RbDefinition;
 import org.wikipedia.dataclient.restbase.RbRelatedPages;
 import org.wikipedia.dataclient.restbase.page.RbPageLead;
@@ -17,6 +14,8 @@ import org.wikipedia.readinglist.sync.SyncedReadingLists;
 
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.Response;

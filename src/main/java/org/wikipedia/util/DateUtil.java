@@ -1,7 +1,6 @@
 package org.wikipedia.util;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import org.wikipedia.feed.model.UtcDate;
 
@@ -13,6 +12,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import androidx.annotation.NonNull;
 
 public final class DateUtil {
 

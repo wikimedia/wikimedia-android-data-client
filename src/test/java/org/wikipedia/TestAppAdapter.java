@@ -1,7 +1,5 @@
 package org.wikipedia;
 
-import android.support.annotation.NonNull;
-
 import org.wikipedia.dataclient.Service;
 import org.wikipedia.dataclient.SharedPreferenceCookieManager;
 import org.wikipedia.dataclient.WikiSite;
@@ -9,6 +7,7 @@ import org.wikipedia.dataclient.okhttp.TestStubInterceptor;
 import org.wikipedia.dataclient.okhttp.UnsuccessfulResponseInterceptor;
 import org.wikipedia.login.LoginResult;
 
+import androidx.annotation.NonNull;
 import okhttp3.OkHttpClient;
 
 public class TestAppAdapter extends AppAdapter {

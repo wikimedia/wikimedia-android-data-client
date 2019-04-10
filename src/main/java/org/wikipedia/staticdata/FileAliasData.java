@@ -4,11 +4,11 @@ If you need to modify it, make sure to modify the template, not this file.
 */
 package org.wikipedia.staticdata;
 
-import android.support.annotation.NonNull;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 public final class FileAliasData {
     @NonNull private static final Map<String, String> DATA_MAP = Collections.unmodifiableMap(newMap());

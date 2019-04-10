@@ -1,8 +1,5 @@
 package org.wikipedia.csrf;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
 import org.wikipedia.AppAdapter;
@@ -17,6 +14,9 @@ import org.wikipedia.util.log.L;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import retrofit2.Call;
 import retrofit2.Response;
 
