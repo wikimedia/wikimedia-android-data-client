@@ -61,7 +61,7 @@ public class LoginClient {
         });
     }
 
-    void login(@NonNull final WikiSite wiki, @NonNull final String userName, @NonNull final String password,
+    public void login(@NonNull final WikiSite wiki, @NonNull final String userName, @NonNull final String password,
                @Nullable final String retypedPassword, @Nullable final String twoFactorCode,
                @Nullable final String loginToken, @NonNull final LoginCallback cb) {
         loginCall = TextUtils.isEmpty(twoFactorCode) && TextUtils.isEmpty(retypedPassword)
