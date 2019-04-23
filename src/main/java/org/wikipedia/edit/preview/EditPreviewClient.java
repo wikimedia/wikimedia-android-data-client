@@ -1,5 +1,8 @@
 package org.wikipedia.edit.preview;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
+
 import org.wikipedia.dataclient.Service;
 import org.wikipedia.dataclient.ServiceFactory;
 import org.wikipedia.dataclient.WikiSite;
@@ -7,8 +10,6 @@ import org.wikipedia.page.PageTitle;
 
 import java.io.IOException;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.VisibleForTesting;
 import retrofit2.Call;
 import retrofit2.Response;
 

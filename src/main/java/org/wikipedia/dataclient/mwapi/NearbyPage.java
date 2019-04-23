@@ -2,13 +2,13 @@ package org.wikipedia.dataclient.mwapi;
 
 import android.location.Location;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.wikipedia.dataclient.WikiSite;
 import org.wikipedia.page.PageTitle;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class NearbyPage {
     @NonNull private PageTitle title;

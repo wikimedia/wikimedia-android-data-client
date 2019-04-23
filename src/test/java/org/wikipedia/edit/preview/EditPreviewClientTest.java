@@ -1,5 +1,7 @@
 package org.wikipedia.edit.preview;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.stream.MalformedJsonException;
 
 import org.junit.Test;
@@ -10,7 +12,6 @@ import org.wikipedia.dataclient.okhttp.HttpStatusException;
 import org.wikipedia.page.PageTitle;
 import org.wikipedia.test.MockWebServerTest;
 
-import androidx.annotation.NonNull;
 import retrofit2.Call;
 
 import static org.mockito.Matchers.any;
