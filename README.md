@@ -18,7 +18,7 @@ further simplify client integration, while also allowing customization and exten
 Add the dependency to your Gradle file as usual:
 
 ```
-implementation "com.dmitrybrant:wikimedia-android-data-client:0.0.17"
+implementation "com.dmitrybrant:wikimedia-android-data-client:0.0.18"
 ```
 
 The only nontrivial point of integration with the library is the `AppAdapter` class:  You
