@@ -18,7 +18,7 @@ public class RbPageSummaryTest {
         subjects = MostReadArticlesTest.unmarshal("most_read.json").articles();
     }
 
-    @Test public void testUnmarshalThumbnails() throws Throwable {
+    @Test public void testUnmarshalThumbnails() {
         RbPageSummary subject = subjects.get(3);
 
         assertThat(subject.getNormalizedTitle(), is("Marilyn Monroe"));

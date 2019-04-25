@@ -3,13 +3,11 @@ package org.wikipedia.nearby;
 import android.location.Location;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
 import org.wikipedia.dataclient.Service;
 import org.wikipedia.dataclient.WikiSite;
 import org.wikipedia.dataclient.mwapi.NearbyPage;
@@ -36,7 +34,7 @@ public class NearbyUnitTest {
     private List<NearbyPage> nearbyPages;
 
     @Before
-    public void setUp() throws Throwable {
+    public void setUp() {
         nextLocation = new Location("current");
         nextLocation.setLatitude(0.0d);
         nextLocation.setLongitude(0.0d);
@@ -46,7 +44,7 @@ public class NearbyUnitTest {
         nearbyPages.add(constructNearbyPage("a", 0.0, 1.0));
     }
 
-    @Test public void testSort() throws Throwable {
+    @Test public void testSort() {
         calcDistances(nearbyPages);
         Collections.sort(nearbyPages, new NearbyDistanceComparator());
         assertThat("a", is(nearbyPages.get(0).getTitle().getDisplayText()));
@@ -54,7 +52,7 @@ public class NearbyUnitTest {
         assertThat("c", is(nearbyPages.get(2).getTitle().getDisplayText()));
     }
 
-    @Test public void testSortWithNullLocations() throws Throwable {
+    @Test public void testSortWithNullLocations() {
         final Location location = null;
         nearbyPages.add(new NearbyPage(new PageTitle("d", TEST_WIKI_SITE), location));
         nearbyPages.add(new NearbyPage(new PageTitle("e", TEST_WIKI_SITE), location));
@@ -68,7 +66,7 @@ public class NearbyUnitTest {
         assertThat("e", is(nearbyPages.get(4).getTitle().getDisplayText()));
     }
 
-    @Test public void testCompare() throws Throwable {
+    @Test public void testCompare() {
         final Location location = null;
         NearbyPage nullLocPage = new NearbyPage(new PageTitle("nowhere", TEST_WIKI_SITE), location);
 
@@ -111,13 +109,6 @@ public class NearbyUnitTest {
         } else {
             return (int) nextLocation.distanceTo(otherLocation);
         }
-    }
-
-    private static final int ONE_KM = 1000;
-    private static final double ONE_KM_D = 1000.0d;
-
-    private String getString(@StringRes int id, Object... formatArgs) {
-        return RuntimeEnvironment.application.getString(id, formatArgs);
     }
 
     private NearbyPage constructNearbyPage(@NonNull String title, double lat, double lon) {
