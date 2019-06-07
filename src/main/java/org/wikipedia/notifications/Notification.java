@@ -72,7 +72,7 @@ public class Notification {
         return contents;
     }
 
-    @NonNull Date getTimestamp() {
+    @NonNull public Date getTimestamp() {
         return timestamp != null ? timestamp.date() : new Date();
     }
 
