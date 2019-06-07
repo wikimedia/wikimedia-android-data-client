@@ -7,7 +7,7 @@ import org.wikipedia.dataclient.mwapi.MwPostResponse;
 public class Edit extends MwPostResponse {
     @SuppressWarnings("unused,") @Nullable private Result edit;
 
-    @Nullable Result edit() {
+    public @Nullable Result edit() {
         return edit;
     }
 
@@ -15,7 +15,7 @@ public class Edit extends MwPostResponse {
         return edit != null;
     }
 
-    class Result {
+    public class Result {
         @SuppressWarnings("unused") @Nullable private String result;
         @SuppressWarnings("unused") private int newrevid;
         @SuppressWarnings("unused") @Nullable private Captcha captcha;
@@ -28,11 +28,11 @@ public class Edit extends MwPostResponse {
             return result;
         }
 
-        int newRevId() {
+        public int newRevId() {
             return newrevid;
         }
 
-        boolean editSucceeded() {
+        public boolean editSucceeded() {
             return "Success".equals(result);
         }
 
@@ -40,7 +40,7 @@ public class Edit extends MwPostResponse {
             return captcha == null ? null : captcha.id();
         }
 
-        boolean hasEditErrorCode() {
+        public boolean hasEditErrorCode() {
             return code != null;
         }
 
@@ -48,15 +48,15 @@ public class Edit extends MwPostResponse {
             return captcha != null;
         }
 
-        @Nullable String code() {
+        public @Nullable String code() {
             return code;
         }
 
-        @Nullable String info() {
+        public @Nullable String info() {
             return info;
         }
 
-        @Nullable String warning() {
+        public @Nullable String warning() {
             return warning;
         }
 
