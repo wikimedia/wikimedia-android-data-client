@@ -304,7 +304,7 @@ public interface Service {
     @FormUrlEncoded
     @Headers("Cache-Control: no-cache")
     @POST(MW_API_PREFIX + "action=edit&nocreate=")
-    @NonNull Call<Edit> postAppendEdit(@NonNull @Field("title") String title,
+    @NonNull Observable<Edit> postAppendEdit(@NonNull @Field("title") String title,
                                        @NonNull @Field("summary") String summary,
                                        @NonNull @Field("appendtext") String text,
                                        @NonNull @Field("token") String token);
@@ -312,7 +312,7 @@ public interface Service {
     @FormUrlEncoded
     @Headers("Cache-Control: no-cache")
     @POST(MW_API_PREFIX + "action=edit&nocreate=")
-    @NonNull Call<Edit> postPrependEdit(@NonNull @Field("title") String title,
+    @NonNull Observable<Edit> postPrependEdit(@NonNull @Field("title") String title,
                                         @NonNull @Field("summary") String summary,
                                         @NonNull @Field("prependtext") String text,
                                         @NonNull @Field("token") String token);
