@@ -11,7 +11,6 @@ import org.wikipedia.gallery.VideoInfo;
 import org.wikipedia.model.BaseModel;
 import org.wikipedia.page.Namespace;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -104,7 +103,7 @@ public class MwQueryPage extends BaseModel {
 
     @NonNull
     public List<ImageInfo> allImages() {
-        return allImages == null ? new ArrayList<>() : allImages;
+        return allImages == null ? Collections.emptyList() : allImages;
     }
 
     @Nullable public ImageInfo imageInfo() {

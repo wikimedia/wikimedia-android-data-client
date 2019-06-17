@@ -7,7 +7,7 @@ import org.wikipedia.dataclient.mwapi.MwPostResponse;
 public class Edit extends MwPostResponse {
     @SuppressWarnings("unused,") @Nullable private Result edit;
 
-    public @Nullable Result edit() {
+    @Nullable public Result edit() {
         return edit;
     }
 
@@ -48,15 +48,15 @@ public class Edit extends MwPostResponse {
             return captcha != null;
         }
 
-        public @Nullable String code() {
+        @Nullable public String code() {
             return code;
         }
 
-        public @Nullable String info() {
+        @Nullable public String info() {
             return info;
         }
 
-        public @Nullable String warning() {
+        @Nullable public String warning() {
             return warning;
         }
 
