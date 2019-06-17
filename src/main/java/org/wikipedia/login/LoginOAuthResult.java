@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.wikipedia.dataclient.WikiSite;
 
-class LoginOAuthResult extends LoginResult {
+public class LoginOAuthResult extends LoginResult {
 
     LoginOAuthResult(@NonNull WikiSite site, @NonNull String status, @Nullable String userName,
                      @Nullable String password, @Nullable String message) {
