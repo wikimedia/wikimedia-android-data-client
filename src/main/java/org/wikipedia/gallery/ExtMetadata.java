@@ -5,90 +5,72 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
-import org.apache.commons.lang3.StringUtils;
-
-@SuppressWarnings("unused")
 public class ExtMetadata {
-    @SerializedName("DateTime") @Nullable private Values dateTime;
-    @SerializedName("ObjectName") @Nullable private Values objectName;
-    @SerializedName("CommonsMetadataExtension") @Nullable private Values commonsMetadataExtension;
-    @SerializedName("Categories") @Nullable private Values categories;
-    @SerializedName("Assessments") @Nullable private Values assessments;
-    @SerializedName("GPSLatitude") @Nullable private Values gpsLatitude;
-    @SerializedName("GPSLongitude") @Nullable private Values gpsLongitude;
-    @SerializedName("ImageDescription") @Nullable private Values imageDescription;
-    @SerializedName("DateTimeOriginal") @Nullable private Values dateTimeOriginal;
-    @SerializedName("Artist") @Nullable private Values artist;
-    @SerializedName("Credit") @Nullable private Values credit;
-    @SerializedName("Permission") @Nullable private Values permission;
-    @SerializedName("AuthorCount") @Nullable private Values authorCount;
-    @SerializedName("LicenseShortName") @Nullable private Values licenseShortName;
-    @SerializedName("UsageTerms") @Nullable private Values usageTerms;
-    @SerializedName("LicenseUrl") @Nullable private Values licenseUrl;
-    @SerializedName("AttributionRequired") @Nullable private Values attributionRequired;
-    @SerializedName("Copyrighted") @Nullable private Values copyrighted;
-    @SerializedName("Restrictions") @Nullable private Values restrictions;
-    @SerializedName("License") @Nullable private Values license;
+    @SuppressWarnings("unused") @SerializedName("DateTime") @Nullable private Values dateTime;
+    @SuppressWarnings("unused") @SerializedName("ObjectName") @Nullable private Values objectName;
+    @SuppressWarnings("unused") @SerializedName("CommonsMetadataExtension") @Nullable private Values commonsMetadataExtension;
+    @SuppressWarnings("unused") @SerializedName("Categories") @Nullable private Values categories;
+    @SuppressWarnings("unused") @SerializedName("Assessments") @Nullable private Values assessments;
+    @SuppressWarnings("unused") @SerializedName("ImageDescription") @Nullable private Values imageDescription;
+    @SuppressWarnings("unused") @SerializedName("DateTimeOriginal") @Nullable private Values dateTimeOriginal;
+    @SuppressWarnings("unused") @SerializedName("Artist") @Nullable private Values artist;
+    @SuppressWarnings("unused") @SerializedName("Credit") @Nullable private Values credit;
+    @SuppressWarnings("unused") @SerializedName("Permission") @Nullable private Values permission;
+    @SuppressWarnings("unused") @SerializedName("AuthorCount") @Nullable private Values authorCount;
+    @SuppressWarnings("unused") @SerializedName("LicenseShortName") @Nullable private Values licenseShortName;
+    @SuppressWarnings("unused") @SerializedName("UsageTerms") @Nullable private Values usageTerms;
+    @SuppressWarnings("unused") @SerializedName("LicenseUrl") @Nullable private Values licenseUrl;
+    @SuppressWarnings("unused") @SerializedName("AttributionRequired") @Nullable private Values attributionRequired;
+    @SuppressWarnings("unused") @SerializedName("Copyrighted") @Nullable private Values copyrighted;
+    @SuppressWarnings("unused") @SerializedName("Restrictions") @Nullable private Values restrictions;
+    @SuppressWarnings("unused") @SerializedName("License") @Nullable private Values license;
 
-    @NonNull public Values dateTime() {
-        return dateTime != null ? dateTime : new Values();
+    @Nullable public Values licenseShortName() {
+        return licenseShortName;
     }
 
-    @NonNull public Values dateTimeOriginal() {
-        return dateTimeOriginal != null ? dateTimeOriginal : new Values();
+    @Nullable public Values licenseUrl() {
+        return licenseUrl;
     }
 
-    @NonNull public Values licenseShortName() {
-        return licenseShortName != null ? licenseShortName : new Values();
+    @Nullable public Values license() {
+        return license;
     }
 
-    @NonNull public Values licenseUrl() {
-        return licenseUrl != null ? licenseUrl : new Values();
+    @Nullable public Values imageDescription() {
+        return imageDescription;
     }
 
-    @NonNull public Values license() {
-        return license != null ? license : new Values();
+    @Nullable public Values objectName() {
+        return objectName;
     }
 
-    @NonNull public Values imageDescription() {
-        return imageDescription != null ? imageDescription : new Values();
+    @Nullable public Values usageTerms() {
+        return usageTerms;
+    }
+    @Nullable public Values dateTime() {
+        return dateTimeOriginal;
     }
 
-    @NonNull public Values objectName() {
-        return objectName != null ? objectName : new Values();
+    @Nullable public Values artist() {
+        return artist;
     }
 
-    @NonNull public Values usageTerms() {
-        return usageTerms != null ? usageTerms : new Values();
-    }
-
-    @NonNull public Values artist() {
-        return artist != null ? artist : new Values();
-    }
-
-    @NonNull public Values categories() {
-        return categories != null ? categories : new Values();
-    }
-
-    @NonNull public Values gpsLatitude() {
-        return gpsLatitude != null ? gpsLatitude : new Values();
-    }
-
-    @NonNull public Values gpsLongitude() {
-        return gpsLongitude != null ? gpsLongitude : new Values();
+    @Nullable public Values credit() {
+        return credit;
     }
 
     public class Values {
-        @SuppressWarnings("unused,NullableProblems") @Nullable private String value;
-        @SuppressWarnings("unused,NullableProblems") @Nullable private String source;
-        @SuppressWarnings("unused,NullableProblems") @Nullable private String hidden;
+        @SuppressWarnings("unused,NullableProblems") @NonNull private String value;
+        @SuppressWarnings("unused,NullableProblems") @NonNull private String source;
+        @SuppressWarnings("unused,NullableProblems") @NonNull private String hidden;
 
         @NonNull public String value() {
-            return StringUtils.defaultString(value);
+            return value;
         }
 
         @NonNull public String source() {
-            return StringUtils.defaultString(source);
+            return source;
         }
     }
 }
