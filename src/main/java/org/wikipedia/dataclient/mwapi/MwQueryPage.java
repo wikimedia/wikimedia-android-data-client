@@ -11,6 +11,7 @@ import org.wikipedia.gallery.VideoInfo;
 import org.wikipedia.model.BaseModel;
 import org.wikipedia.page.Namespace;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class MwQueryPage extends BaseModel {
     @SuppressWarnings("unused") @Nullable private Thumbnail thumbnail;
     @SuppressWarnings("unused") @Nullable private String description;
     @SuppressWarnings("unused") @SerializedName("descriptionsource") @Nullable private String descriptionSource;
+    @SuppressWarnings("unused") @SerializedName("allimages") @Nullable private List<ImageInfo> allImages;
     @SuppressWarnings("unused") @SerializedName("imageinfo") @Nullable private List<ImageInfo> imageInfo;
     @SuppressWarnings("unused") @SerializedName("videoinfo") @Nullable private List<VideoInfo> videoInfo;
     @Nullable private String redirectFrom;
@@ -98,6 +100,11 @@ public class MwQueryPage extends BaseModel {
     @Nullable
     public String descriptionSource() {
         return descriptionSource;
+    }
+
+    @NonNull
+    public List<ImageInfo> allImages() {
+        return allImages == null ? new ArrayList<>() : allImages;
     }
 
     @Nullable public ImageInfo imageInfo() {
