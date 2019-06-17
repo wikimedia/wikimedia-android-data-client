@@ -1,28 +1,17 @@
 package org.wikipedia.dataclient.mwapi;
 
-import com.google.gson.annotations.SerializedName;
+import androidx.annotation.NonNull;
 
 public class ImageDetails {
 
-    @SerializedName("name")
-    private String name;
-    @SerializedName("title")
-    private String title;
+    @SuppressWarnings("unused") private String name;
+    @SuppressWarnings("unused") private String title;
 
-    public String getName() {
+    @NonNull public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTitle() {
+    @NonNull public String getTitle() {
         return title;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
 }
