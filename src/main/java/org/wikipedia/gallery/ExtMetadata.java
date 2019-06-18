@@ -14,12 +14,8 @@ public class ExtMetadata {
     @SerializedName("CommonsMetadataExtension") @Nullable private Values commonsMetadataExtension;
     @SerializedName("Categories") @Nullable private Values categories;
     @SerializedName("Assessments") @Nullable private Values assessments;
-    @SerializedName("GPSLatitude")
-    @Nullable
-    private Values gpsLatitude;
-    @SerializedName("GPSLongitude")
-    @Nullable
-    private Values gpsLongitude;
+    @SerializedName("GPSLatitude") @Nullable private Values gpsLatitude;
+    @SerializedName("GPSLongitude") @Nullable private Values gpsLongitude;
     @SerializedName("ImageDescription") @Nullable private Values imageDescription;
     @SerializedName("DateTimeOriginal") @Nullable private Values dateTimeOriginal;
     @SerializedName("Artist") @Nullable private Values artist;
@@ -74,18 +70,15 @@ public class ExtMetadata {
         return StringUtils.defaultString(artist == null ? null : artist.value());
     }
 
-    @NonNull
-    public String getCategories() {
+    @NonNull public String getCategories() {
         return StringUtils.defaultString(categories == null ? null : categories.value());
     }
 
-    @NonNull
-    public String getGpsLatitude() {
+    @NonNull public String getGpsLatitude() {
         return StringUtils.defaultString(gpsLatitude == null ? null : gpsLatitude.value());
     }
 
-    @NonNull
-    public String getGpsLongitude() {
+    @NonNull public String getGpsLongitude() {
         return StringUtils.defaultString(gpsLongitude == null ? null : gpsLongitude.value());
     }
 
