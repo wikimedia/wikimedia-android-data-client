@@ -4,29 +4,27 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+@SuppressWarnings("unused")
 public class GeoSearchItem {
 
-    @SuppressWarnings("unused") private String title;
-    @SuppressWarnings("unused")
+    private String title;
     @SerializedName("lat") private double latitude;
-    @SuppressWarnings("unused")
     @SerializedName("lon") private double longitude;
-    @SuppressWarnings("unused")
     @SerializedName("dist") private double distance;
 
     @NonNull public String getTitle() {
         return title;
     }
 
-    @NonNull public double getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    @NonNull public double getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    @NonNull public double getDistance() {
+    public double getDistance() {
         return distance;
     }
 }
