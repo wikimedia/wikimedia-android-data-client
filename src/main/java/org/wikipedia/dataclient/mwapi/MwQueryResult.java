@@ -38,6 +38,7 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
     @Nullable private List<RecentChange> recentchanges;
     @SerializedName("wikimediaeditortaskscounts") @Nullable private EditorTaskCounts editorTaskCounts;
     @SerializedName("allimages") @Nullable private List<ImageDetails> allImages;
+    @SerializedName("geosearch") @Nullable private List<GeoSearchItem> geoSearch;
 
     @Nullable public List<MwQueryPage> pages() {
         return pages;
@@ -53,6 +54,11 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
     @NonNull
     public List<ImageDetails> allImages() {
         return allImages == null ? Collections.emptyList() : allImages;
+    }
+
+    @NonNull
+    public List<GeoSearchItem> geoSearch() {
+        return geoSearch == null ? Collections.emptyList() : geoSearch;
     }
 
     @Nullable public UserInfo userInfo() {
