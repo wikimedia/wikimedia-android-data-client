@@ -7,7 +7,7 @@ import org.wikipedia.dataclient.WikiSite;
 
 public class LoginOAuthResult extends LoginResult {
 
-    LoginOAuthResult(@NonNull WikiSite site, @NonNull String status, @Nullable String userName,
+    public LoginOAuthResult(@NonNull WikiSite site, @NonNull String status, @Nullable String userName,
                      @Nullable String password, @Nullable String message) {
         super(site, status, userName, password, message);
     }
