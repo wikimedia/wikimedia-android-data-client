@@ -68,7 +68,7 @@ public class Notification {
         return revid;
     }
 
-    @Nullable Contents getContents() {
+    @Nullable public Contents getContents() {
         return contents;
     }
 
