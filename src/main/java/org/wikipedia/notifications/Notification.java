@@ -1,5 +1,8 @@
 package org.wikipedia.notifications;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
@@ -8,15 +11,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.wikipedia.json.GsonUtil;
 import org.wikipedia.util.DateUtil;
 import org.wikipedia.util.log.L;
-import org.wikipedia.wikidata.EntityClient;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class Notification {
     public static final String TYPE_EDIT_USER_TALK = "edit-user-talk";
@@ -69,11 +68,11 @@ public class Notification {
         return revid;
     }
 
-    @Nullable Contents getContents() {
+    @Nullable public Contents getContents() {
         return contents;
     }
 
-    @NonNull Date getTimestamp() {
+    @NonNull public Date getTimestamp() {
         return timestamp != null ? timestamp.date() : new Date();
     }
 
@@ -86,7 +85,7 @@ public class Notification {
     }
 
     public boolean isFromWikidata() {
-        return wiki().equals(EntityClient.WIKIDATA_WIKI);
+        return wiki().equals("wikidatawiki");
     }
 
     @Override public String toString() {

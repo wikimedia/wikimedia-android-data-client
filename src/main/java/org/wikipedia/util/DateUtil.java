@@ -2,6 +2,8 @@ package org.wikipedia.util;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import org.wikipedia.feed.model.UtcDate;
 
 import java.text.DateFormat;
@@ -14,8 +16,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
-
-import androidx.annotation.NonNull;
 
 public final class DateUtil {
     private static Map<String, SimpleDateFormat> DATE_FORMATS = new HashMap<>();

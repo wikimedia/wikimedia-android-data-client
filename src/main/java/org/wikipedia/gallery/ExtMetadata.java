@@ -1,11 +1,11 @@
 package org.wikipedia.gallery;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.StringUtils;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 @SuppressWarnings("unused")
 public class ExtMetadata {
@@ -30,65 +30,73 @@ public class ExtMetadata {
     @SerializedName("Restrictions") @Nullable private Values restrictions;
     @SerializedName("License") @Nullable private Values license;
 
-    @NonNull public Values dateTime() {
-        return dateTime != null ? dateTime : new Values();
+    @NonNull public String licenseShortName() {
+        return StringUtils.defaultString(licenseShortName == null ? null : licenseShortName.value());
     }
 
-    @NonNull public Values dateTimeOriginal() {
-        return dateTimeOriginal != null ? dateTimeOriginal : new Values();
+    @NonNull public String licenseUrl() {
+        return StringUtils.defaultString(licenseUrl == null ? null : licenseUrl.value());
     }
 
-    @NonNull public Values licenseShortName() {
-        return licenseShortName != null ? licenseShortName : new Values();
+    @NonNull public String license() {
+        return StringUtils.defaultString(license == null ? null : license.value());
     }
 
-    @NonNull public Values licenseUrl() {
-        return licenseUrl != null ? licenseUrl : new Values();
+    @NonNull public String imageDescription() {
+        return StringUtils.defaultString(imageDescription == null ? null : imageDescription.value());
     }
 
-    @NonNull public Values license() {
-        return license != null ? license : new Values();
+    @NonNull public String imageDescriptionSource() {
+        return StringUtils.defaultString(imageDescription == null ? null : imageDescription.source());
     }
 
-    @NonNull public Values imageDescription() {
-        return imageDescription != null ? imageDescription : new Values();
+    @NonNull public String objectName() {
+        return StringUtils.defaultString(objectName == null ? null : objectName.value());
     }
 
-    @NonNull public Values objectName() {
-        return objectName != null ? objectName : new Values();
+    @NonNull public String usageTerms() {
+        return StringUtils.defaultString(usageTerms == null ? null : usageTerms.value());
     }
 
-    @NonNull public Values usageTerms() {
-        return usageTerms != null ? usageTerms : new Values();
+    @NonNull public String dateTimeOriginal() {
+        return StringUtils.defaultString(dateTimeOriginal == null ? null : dateTimeOriginal.value());
     }
 
-    @NonNull public Values artist() {
-        return artist != null ? artist : new Values();
+    @NonNull public String dateTime() {
+        return StringUtils.defaultString(dateTime == null ? null : dateTime.value());
     }
 
-    @NonNull public Values categories() {
-        return categories != null ? categories : new Values();
+    @NonNull public String artist() {
+        return StringUtils.defaultString(artist == null ? null : artist.value());
     }
 
-    @NonNull public Values gpsLatitude() {
-        return gpsLatitude != null ? gpsLatitude : new Values();
+    @NonNull public String getCategories() {
+        return StringUtils.defaultString(categories == null ? null : categories.value());
     }
 
-    @NonNull public Values gpsLongitude() {
-        return gpsLongitude != null ? gpsLongitude : new Values();
+    @NonNull public String getGpsLatitude() {
+        return StringUtils.defaultString(gpsLatitude == null ? null : gpsLatitude.value());
+    }
+
+    @NonNull public String getGpsLongitude() {
+        return StringUtils.defaultString(gpsLongitude == null ? null : gpsLongitude.value());
+    }
+
+    @NonNull public String credit() {
+        return StringUtils.defaultString(credit == null ? null : credit.value());
     }
 
     public class Values {
-        @SuppressWarnings("unused,NullableProblems") @Nullable private String value;
-        @SuppressWarnings("unused,NullableProblems") @Nullable private String source;
-        @SuppressWarnings("unused,NullableProblems") @Nullable private String hidden;
+        @Nullable private String value;
+        @Nullable private String source;
+        @Nullable private String hidden;
 
-        @NonNull public String value() {
-            return StringUtils.defaultString(value);
+        @Nullable public String value() {
+            return value;
         }
 
-        @NonNull public String source() {
-            return StringUtils.defaultString(source);
+        @Nullable public String source() {
+            return source;
         }
     }
 }

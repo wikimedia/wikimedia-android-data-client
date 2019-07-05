@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.Nullable;
 
-class EditAbuseFilterResult extends EditResult {
+public class EditAbuseFilterResult extends EditResult {
     static final int TYPE_WARNING = 1;
     static final int TYPE_ERROR = 2;
 

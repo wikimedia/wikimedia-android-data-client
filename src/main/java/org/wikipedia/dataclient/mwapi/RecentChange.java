@@ -1,11 +1,11 @@
 package org.wikipedia.dataclient.mwapi;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.StringUtils;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 @SuppressWarnings("unused")
 public class RecentChange {

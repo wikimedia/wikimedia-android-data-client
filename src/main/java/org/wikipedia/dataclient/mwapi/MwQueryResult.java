@@ -1,5 +1,8 @@
 package org.wikipedia.dataclient.mwapi;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,12 +16,10 @@ import org.wikipedia.page.PageTitle;
 import org.wikipedia.settings.SiteInfo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 @SuppressWarnings("unused")
 public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapter.PostProcessable {
@@ -36,6 +37,8 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
     @SerializedName("general") @Nullable private SiteInfo generalSiteInfo;
     @Nullable private List<RecentChange> recentchanges;
     @SerializedName("wikimediaeditortaskscounts") @Nullable private EditorTaskCounts editorTaskCounts;
+    @SerializedName("allimages") @Nullable private List<ImageDetails> allImages;
+    @SerializedName("geosearch") @Nullable private List<GeoSearchItem> geoSearch;
 
     @Nullable public List<MwQueryPage> pages() {
         return pages;
@@ -46,6 +49,16 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
             return pages.get(0);
         }
         return null;
+    }
+
+    @NonNull
+    public List<ImageDetails> allImages() {
+        return allImages == null ? Collections.emptyList() : allImages;
+    }
+
+    @NonNull
+    public List<GeoSearchItem> geoSearch() {
+        return geoSearch == null ? Collections.emptyList() : geoSearch;
     }
 
     @Nullable public UserInfo userInfo() {

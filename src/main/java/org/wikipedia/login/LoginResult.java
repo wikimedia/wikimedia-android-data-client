@@ -1,12 +1,12 @@
 package org.wikipedia.login;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.wikipedia.dataclient.WikiSite;
 
 import java.util.Collections;
 import java.util.Set;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class LoginResult {
     @NonNull private final WikiSite site;
@@ -18,7 +18,7 @@ public class LoginResult {
     private int userId;
     @NonNull private Set<String> groups = Collections.emptySet();
 
-    LoginResult(@NonNull WikiSite site, @NonNull String status, @Nullable String userName,
+    public LoginResult(@NonNull WikiSite site, @NonNull String status, @Nullable String userName,
                 @Nullable String password, @Nullable String message) {
         this.site = site;
         this.status = status;
