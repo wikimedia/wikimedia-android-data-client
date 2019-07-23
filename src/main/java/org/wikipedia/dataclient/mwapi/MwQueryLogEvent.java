@@ -1,7 +1,10 @@
 package org.wikipedia.dataclient.mwapi;
 
 import org.wikipedia.model.BaseModel;
+import org.wikipedia.util.DateUtil;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -59,6 +62,14 @@ public class MwQueryLogEvent extends BaseModel {
 
     public String timestamp() {
         return timestamp;
+    }
+
+    public Date date(){
+        try {
+            return DateUtil.iso8601DateParse(timestamp);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
     public String comment() {
