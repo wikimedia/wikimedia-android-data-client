@@ -73,6 +73,10 @@ public class MwQueryLogEvent extends BaseModel {
         return tags;
     }
 
+    public boolean isDeleted() {
+        return pageid==0;
+    }
+
     public Params params() {
         return params;
     }
