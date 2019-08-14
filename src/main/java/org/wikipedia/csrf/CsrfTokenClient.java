@@ -1,9 +1,10 @@
 package org.wikipedia.csrf;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import org.wikipedia.AppAdapter;
 import org.wikipedia.dataclient.Service;
@@ -141,7 +142,7 @@ public class CsrfTokenClient {
                             AppAdapter.get().getPassword(), "");
                 }
 
-                Response<MwQueryResponse> response = service.getCsrfToken().execute();
+                Response<MwQueryResponse> response = service.getCsrfTokenCall().execute();
                 if (response.body() == null || response.body().query() == null
                         || TextUtils.isEmpty(response.body().query().csrfToken())) {
                     continue;
@@ -163,7 +164,7 @@ public class CsrfTokenClient {
 
     @VisibleForTesting @NonNull Call<MwQueryResponse> requestToken(@NonNull Service service,
                                                                    @NonNull final Callback cb) {
-        Call<MwQueryResponse> call = service.getCsrfToken();
+        Call<MwQueryResponse> call = service.getCsrfTokenCall();
         call.enqueue(new retrofit2.Callback<MwQueryResponse>() {
             @Override
             public void onResponse(@NonNull Call<MwQueryResponse> call, @NonNull Response<MwQueryResponse> response) {

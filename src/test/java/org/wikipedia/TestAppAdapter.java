@@ -1,6 +1,6 @@
 package org.wikipedia;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.wikipedia.dataclient.Service;
 import org.wikipedia.dataclient.SharedPreferenceCookieManager;

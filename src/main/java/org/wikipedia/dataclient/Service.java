@@ -1,7 +1,7 @@
 package org.wikipedia.dataclient;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.wikipedia.captcha.Captcha;
 import org.wikipedia.dataclient.mwapi.CreateAccountResponse;
@@ -159,10 +159,13 @@ public interface Service {
     @GET(MW_API_PREFIX + "action=query&prop=langlinks&lllimit=500&redirects=&converttitles=")
     @NonNull Observable<MwQueryResponse> getLangLinks(@NonNull @Query("titles") String title);
 
+    @GET(MW_API_PREFIX + "action=query&prop=description|pageprops&redirects")
+    @NonNull Observable<MwQueryResponse> getPagePropsAndDescription(@NonNull @Query("titles") String titles);
+
     @GET(MW_API_PREFIX + "action=query&prop=description")
     @NonNull Observable<MwQueryResponse> getDescription(@NonNull @Query("titles") String titles);
 
-    @GET(MW_API_PREFIX + "action=query&prop=imageinfo&iiprop=extmetadata")
+    @GET(MW_API_PREFIX + "action=query&prop=imageinfo&iiprop=timestamp|user|url|extmetadata&iiurlwidth=" + PREFERRED_THUMB_SIZE)
     @NonNull Observable<MwQueryResponse> getImageExtMetadata(@NonNull @Query("titles") String titles);
 
     @GET(MW_API_PREFIX + "action=sitematrix&smtype=language&smlangprop=code|name|localname")
@@ -177,7 +180,7 @@ public interface Service {
 
     @Headers("Cache-Control: no-cache")
     @GET(MW_API_PREFIX + "action=query&generator=random&redirects=1&grnnamespace=6&grnlimit=50"
-            + "&prop=description|imageinfo&iiprop=timestamp|user|url&iiurlwidth=" + PREFERRED_THUMB_SIZE)
+            + "&prop=description|imageinfo&iiprop=timestamp|user|url|mime&iiurlwidth=" + PREFERRED_THUMB_SIZE)
     @NonNull Observable<MwQueryResponse> getRandomWithImageInfo();
 
     @GET(MW_API_PREFIX + "action=query&prop=categories&clprop=hidden&cllimit=500")
@@ -187,12 +190,23 @@ public interface Service {
     @NonNull Observable<MwQueryResponse> getCategoryMembers(@NonNull @Query("cmtitle") String title,
                                                             @Nullable @Query("cmcontinue") String continueStr);
 
+    @FormUrlEncoded
+    @POST(MW_API_PREFIX + "action=thank")
+    @NonNull Observable<MwPostResponse> thank(@Nullable @Field("rev") String rev,
+                                              @Nullable @Field("log") String log,
+                                              @NonNull @Field("token") String token,
+                                              @Nullable @Field("source") String source);
+
 
     // ------- CSRF, Login, and Create Account -------
 
     @Headers("Cache-Control: no-cache")
     @GET(MW_API_PREFIX + "action=query&meta=tokens&type=csrf")
-    @NonNull Call<MwQueryResponse> getCsrfToken();
+    @NonNull Call<MwQueryResponse> getCsrfTokenCall();
+
+    @Headers("Cache-Control: no-cache")
+    @GET(MW_API_PREFIX + "action=query&meta=tokens&type=csrf")
+    @NonNull Observable<MwQueryResponse> getCsrfToken();
 
     @SuppressWarnings("checkstyle:parameternumber")
     @FormUrlEncoded
@@ -223,6 +237,11 @@ public interface Service {
                                                        @Field("retype") String retypedPass, @Field("OATHToken") String twoFactorCode,
                                                        @Field("logintoken") String token,
                                                        @Field("logincontinue") boolean loginContinue);
+
+    @Headers("Cache-Control: no-cache")
+    @FormUrlEncoded
+    @POST(MW_API_PREFIX + "action=logout")
+    @NonNull Observable<MwPostResponse> postLogout(@NonNull @Field("token") String token);
 
     @GET(MW_API_PREFIX + "action=query&meta=authmanagerinfo|tokens&amirequestsfor=create&type=createaccount")
     @NonNull Observable<MwQueryResponse> getAuthManagerInfo();
@@ -273,11 +292,11 @@ public interface Service {
     // ------- Editing -------
 
     @GET(MW_API_PREFIX + "action=query&prop=revisions&rvprop=content|timestamp&rvlimit=1&converttitles=")
-    @NonNull Call<MwQueryResponse> getWikiTextForSection(@NonNull @Query("titles") String title, @Query("rvsection") int section);
+    @NonNull Observable<MwQueryResponse> getWikiTextForSection(@NonNull @Query("titles") String title, @Query("rvsection") int section);
 
     @FormUrlEncoded
     @POST(MW_API_PREFIX + "action=parse&prop=text&sectionpreview=&pst=&mobileformat=")
-    @NonNull Call<EditPreview> postEditPreview(@NonNull @Field("title") String title,
+    @NonNull Observable<EditPreview> postEditPreview(@NonNull @Field("title") String title,
                                                @NonNull @Field("text") String text);
 
     @FormUrlEncoded
@@ -297,7 +316,7 @@ public interface Service {
     @FormUrlEncoded
     @Headers("Cache-Control: no-cache")
     @POST(MW_API_PREFIX + "action=edit&nocreate=")
-    @NonNull Call<Edit> postAppendEdit(@NonNull @Field("title") String title,
+    @NonNull Observable<Edit> postAppendEdit(@NonNull @Field("title") String title,
                                        @NonNull @Field("summary") String summary,
                                        @NonNull @Field("appendtext") String text,
                                        @NonNull @Field("token") String token);
@@ -305,7 +324,7 @@ public interface Service {
     @FormUrlEncoded
     @Headers("Cache-Control: no-cache")
     @POST(MW_API_PREFIX + "action=edit&nocreate=")
-    @NonNull Call<Edit> postPrependEdit(@NonNull @Field("title") String title,
+    @NonNull Observable<Edit> postPrependEdit(@NonNull @Field("title") String title,
                                         @NonNull @Field("summary") String summary,
                                         @NonNull @Field("prependtext") String text,
                                         @NonNull @Field("token") String token);
@@ -318,8 +337,23 @@ public interface Service {
                                           @NonNull @Field("reason") String reason,
                                           @NonNull @Field("token") String token);
 
+    @Headers("Cache-Control: no-cache")
+    @GET(MW_API_PREFIX + "action=query&meta=wikimediaeditortaskscounts")
+    @NonNull Observable<MwQueryResponse> getEditorTaskCounts();
+
+    @GET(MW_API_PREFIX + "action=query&generator=wikimediaeditortaskssuggestions&prop=pageprops&gwetstask=missingdescriptions&gwetslimit=3")
+    @NonNull Observable<MwQueryResponse> getEditorTaskMissingDescriptions(@NonNull @Query("gwetstarget") String targetLanguage);
+
+    @GET(MW_API_PREFIX + "action=query&generator=wikimediaeditortaskssuggestions&prop=pageprops&gwetstask=descriptiontranslations&gwetslimit=3")
+    @NonNull Observable<MwQueryResponse> getEditorTaskTranslatableDescriptions(@NonNull @Query("gwetssource") String sourceLanguage,
+                                                                               @NonNull @Query("gwetstarget") String targetLanguage);
+
 
     // ------- Wikidata -------
+
+    @GET(MW_API_PREFIX + "action=wbgetentities")
+    @NonNull Observable<Entities> getEntitiesByTitle(@Query("titles") @NonNull String titles,
+                                                     @Query("sites") @NonNull String sites);
 
     @GET(MW_API_PREFIX + "action=wbgetentities&props=labels&languagefallback=1")
     @NonNull Call<Entities> getWikidataLabels(@Query("ids") @NonNull String idList,

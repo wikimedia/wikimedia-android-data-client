@@ -1,7 +1,7 @@
 package org.wikipedia.dataclient;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.wikipedia.dataclient.restbase.RbDefinition;
 import org.wikipedia.dataclient.restbase.RbRelatedPages;
@@ -10,7 +10,7 @@ import org.wikipedia.dataclient.restbase.page.RbPageRemaining;
 import org.wikipedia.dataclient.restbase.page.RbPageSummary;
 import org.wikipedia.feed.aggregated.AggregatedFeedContent;
 import org.wikipedia.feed.announcement.AnnouncementList;
-import org.wikipedia.feed.configure.FeedAvailabilityClient;
+import org.wikipedia.feed.configure.FeedAvailability;
 import org.wikipedia.feed.onthisday.OnThisDay;
 import org.wikipedia.gallery.Gallery;
 import org.wikipedia.readinglist.sync.SyncedReadingLists;
@@ -29,8 +29,6 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-
-import static org.wikipedia.dataclient.Service.OFFLINE_SAVE_HEADER;
 
 public interface RestService {
     String REST_API_PREFIX = "api/rest_v1/";
@@ -68,7 +66,7 @@ public interface RestService {
     @GET("page/mobile-sections-lead/{title}")
     @NonNull
     Observable<Response<RbPageLead>> getLeadSection(@Nullable @Header("Cache-Control") String cacheControl,
-                                                    @Nullable @Header(OFFLINE_SAVE_HEADER) String saveHeader,
+                                                    @Nullable @Header(Service.OFFLINE_SAVE_HEADER) String saveHeader,
                                                     @Nullable @Header("Referer") String referrerUrl,
                                                     @NonNull @Path("title") String title);
 
@@ -80,7 +78,7 @@ public interface RestService {
     @Headers(ACCEPT_HEADER_MOBILE_SECTIONS)
     @GET(REST_PAGE_SECTIONS_URL)
     @NonNull Observable<Response<RbPageRemaining>> getRemainingSections(@Nullable @Header("Cache-Control") String cacheControl,
-                                                                        @Nullable @Header(OFFLINE_SAVE_HEADER) String saveHeader,
+                                                                        @Nullable @Header(Service.OFFLINE_SAVE_HEADER) String saveHeader,
                                                                         @NonNull @Path("title") String title);
     /**
      * TODO: remove this if we find a way to get the request url before the observable object being executed
@@ -91,7 +89,7 @@ public interface RestService {
     @Headers(ACCEPT_HEADER_MOBILE_SECTIONS)
     @GET(REST_PAGE_SECTIONS_URL)
     @NonNull Call<RbPageRemaining> getRemainingSectionsUrl(@Nullable @Header("Cache-Control") String cacheControl,
-                                                           @Nullable @Header(OFFLINE_SAVE_HEADER) String saveHeader,
+                                                           @Nullable @Header(Service.OFFLINE_SAVE_HEADER) String saveHeader,
                                                            @NonNull @Path("title") String title);
 
     // todo: this Content Service-only endpoint is under page/ but that implementation detail should
@@ -117,7 +115,7 @@ public interface RestService {
     @NonNull Observable<Gallery> getMedia(@Path("title") String title);
 
     @GET("feed/onthisday/events/{mm}/{dd}")
-    @NonNull Call<OnThisDay> getOnThisDay(@Path("mm") int month, @Path("dd") int day);
+    @NonNull Observable<OnThisDay> getOnThisDay(@Path("mm") int month, @Path("dd") int day);
 
     @Headers(ACCEPT_HEADER_PREFIX + "announcements/0.1.0\"")
     @GET("feed/announcements")
@@ -130,7 +128,7 @@ public interface RestService {
                                                                  @Path("day") String day);
 
     @GET("feed/availability")
-    @NonNull Call<FeedAvailabilityClient.FeedAvailability> getFeedAvailability();
+    @NonNull Observable<FeedAvailability> getFeedAvailability();
 
 
     // ------- Reading lists -------

@@ -2,9 +2,10 @@ package org.wikipedia.edit;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 
-class EditAbuseFilterResult extends EditResult {
+import androidx.annotation.Nullable;
+
+public class EditAbuseFilterResult extends EditResult {
     static final int TYPE_WARNING = 1;
     static final int TYPE_ERROR = 2;
 

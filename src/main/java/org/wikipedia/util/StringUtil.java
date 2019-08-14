@@ -1,9 +1,6 @@
 package org.wikipedia.util;
 
 import android.os.Build;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -14,6 +11,10 @@ import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 

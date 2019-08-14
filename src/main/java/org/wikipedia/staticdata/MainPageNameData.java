@@ -4,7 +4,7 @@ If you need to modify it, make sure to modify the template, not this file.
 */
 package org.wikipedia.staticdata;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.Collections;
 import java.util.HashMap;

@@ -1,8 +1,9 @@
 package org.wikipedia.dataclient.restbase.page;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -20,19 +21,21 @@ import org.wikipedia.page.PageTitle;
  * FeedPageSummary subclass, "title" becomes the un-normalized, raw title, and the normalized title
  * is sent as "normalizedtitle".
  */
+@SuppressWarnings("unused")
 public class RbPageSummary implements PageSummary {
-    @SuppressWarnings("unused") @Nullable private String type;
-    @SuppressWarnings("unused,NullableProblems") @Required @NonNull private String title;
-    @SuppressWarnings("unused") @Nullable private String normalizedtitle;
-    @SuppressWarnings("unused,NullableProblems") @NonNull private String displaytitle;
-    @SuppressWarnings("unused") @Nullable private NamespaceContainer namespace;
-    @SuppressWarnings("unused") @Nullable private String extract;
-    @SuppressWarnings("unused") @Nullable @SerializedName("extract_html") private String extractHtml;
-    @SuppressWarnings("unused") @Nullable private String description;
-    @SuppressWarnings("unused") @Nullable private Thumbnail thumbnail;
-    @SuppressWarnings("unused") @Nullable @SerializedName("originalimage") private Thumbnail originalImage;
-    @SuppressWarnings("unused") @Nullable private String lang;
-    @SuppressWarnings("unused") private int pageid;
+    @Nullable private String type;
+    @SuppressWarnings("NullableProblems") @Required @NonNull private String title;
+    @Nullable private String normalizedtitle;
+    @SuppressWarnings("NullableProblems") @NonNull private String displaytitle;
+    @Nullable private NamespaceContainer namespace;
+    @Nullable private String extract;
+    @Nullable @SerializedName("extract_html") private String extractHtml;
+    @Nullable private String description;
+    @Nullable private Thumbnail thumbnail;
+    @Nullable @SerializedName("originalimage") private Thumbnail originalImage;
+    @Nullable private String lang;
+    private int pageid;
+    @Nullable @SerializedName("wikibase_item") private String wikiBaseItem;
 
     @Override @NonNull
     public String getTitle() {
@@ -89,6 +92,11 @@ public class RbPageSummary implements PageSummary {
         return originalImage == null ? null : originalImage.getUrl();
     }
 
+    @Nullable
+    public String getWikiBaseItem() {
+        return wikiBaseItem;
+    }
+
     @NonNull
     public PageTitle getPageTitle(@NonNull WikiSite wiki) {
         return new PageTitle(getTitle(), wiki, getThumbnailUrl(), getDescription());
@@ -96,6 +104,10 @@ public class RbPageSummary implements PageSummary {
 
     public int getPageId() {
         return pageid;
+    }
+
+    public String getLang() {
+        return lang;
     }
 
     /**
