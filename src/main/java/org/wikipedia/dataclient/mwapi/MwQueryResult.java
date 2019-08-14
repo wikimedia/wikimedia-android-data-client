@@ -39,6 +39,8 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
     @SerializedName("wikimediaeditortaskscounts") @Nullable private EditorTaskCounts editorTaskCounts;
     @SerializedName("allimages") @Nullable private List<ImageDetails> allImages;
     @SerializedName("geosearch") @Nullable private List<GeoSearchItem> geoSearch;
+    @Nullable private List<MwQueryLogEvent> logevents;
+
 
     @Nullable public List<MwQueryPage> pages() {
         return pages;
@@ -213,6 +215,11 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
                 }
             }
         }
+    }
+
+    @Nullable
+    public List<MwQueryLogEvent> logevents() {
+        return logevents;
     }
 
     private static class Redirect {
