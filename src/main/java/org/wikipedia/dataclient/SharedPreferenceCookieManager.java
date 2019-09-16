@@ -19,7 +19,18 @@ import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
 
 public final class SharedPreferenceCookieManager implements CookieJar {
-    private static final String CENTRALAUTH_PREFIX = "centralauth_";
+    private static final String CENTRAL_AUTH_PREFIX = "centralauth_";
+    private static final String WIKIPEDIA_DOMAIN = "wikipedia.org";
+    private static final String MEDIAWIKI_DOMAIN = "wikimedia.org";
+    private static final String WIKIDATA_DOMAIN = "wikidata.org";
+    private static final String WIKIMEDIA_DOMAIN = "wikimedia.org";
+    private static final List<String> CENTRAL_AUTH_DOMAINS = new ArrayList<String>(){{
+        add(WIKIPEDIA_DOMAIN);
+        add(MEDIAWIKI_DOMAIN);
+        add(WIKIDATA_DOMAIN);
+        add(WIKIMEDIA_DOMAIN);
+    }};
+
     private static SharedPreferenceCookieManager INSTANCE;
 
     // Map: domain -> list of cookies
@@ -120,6 +131,19 @@ public final class SharedPreferenceCookieManager implements CookieJar {
         }
     }
 
+    private boolean isCentralAuthDomain(String domain) {
+        if (domain == null) {
+            return false;
+        }
+        String lowercaseDomain = domain.toLowerCase();
+        for (String centralAuthDomain: CENTRAL_AUTH_DOMAINS) {
+            if (lowercaseDomain.equals(centralAuthDomain) || lowercaseDomain.endsWith("." + centralAuthDomain)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public synchronized List<Cookie> loadForRequest(@NonNull HttpUrl url) {
         List<Cookie> cookieList = new ArrayList<>();
@@ -130,10 +154,9 @@ public final class SharedPreferenceCookieManager implements CookieJar {
 
             if (domain.endsWith(domainSpec)) {
                 buildCookieList(cookieList, cookiesForDomainSpec, null);
-            } else if (domainSpec.endsWith("wikipedia.org")) {
-                // For sites outside the wikipedia.org domain, transfer the centralauth cookies
-                // from wikipedia.org unconditionally.
-                buildCookieList(cookieList, cookiesForDomainSpec, CENTRALAUTH_PREFIX);
+            } else if (isCentralAuthDomain(domainSpec) && isCentralAuthDomain(domain)) {
+                // For central auth sites, transfer the central auth cookies
+                buildCookieList(cookieList, cookiesForDomainSpec, CENTRAL_AUTH_PREFIX);
             }
         }
         return cookieList;
