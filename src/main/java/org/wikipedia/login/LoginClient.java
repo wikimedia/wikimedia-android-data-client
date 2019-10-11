@@ -205,7 +205,7 @@ public class LoginClient {
                 if ("UI".equals(status)) {
                     if (requests != null) {
                         for (Request req : requests) {
-                            if ("TOTPAuthenticationRequest".equals(req.id())) {
+                            if ("MediaWiki\\Extension\\OATHAuth\\Auth\\TOTPAuthenticationRequest".equals(req.id())) {
                                 return new LoginOAuthResult(site, status, userName, password, message);
                             } else if ("MediaWiki\\Auth\\PasswordAuthenticationRequest".equals(req.id())) {
                                 return new LoginResetPasswordResult(site, status, userName, password, message);
