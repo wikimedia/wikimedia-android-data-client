@@ -24,7 +24,7 @@ public final class ServiceFactory {
             return SERVICE_CACHE.get(hashCode);
         }
 
-        Retrofit r = createRetrofit(wiki, TextUtils.isEmpty(AppAdapter.get().getMediaWikiBaseUrl()) ? wiki.url() + "/" : AppAdapter.get().getMediaWikiBaseUrl());
+        Retrofit r = createRetrofit(wiki, wiki.url() + "/");
 
         Service s = r.create(Service.class);
         SERVICE_CACHE.put(hashCode, s);
@@ -32,7 +32,7 @@ public final class ServiceFactory {
     }
 
     public static <T> T get(@NonNull WikiSite wiki, Class<T> service) {
-        return get(wiki, AppAdapter.get().getMediaWikiBaseUrl(), service);
+        return get(wiki, wiki.url() + "/", service);
     }
 
     public static <T> T get(@NonNull WikiSite wiki, @Nullable String baseUrl, Class<T> service) {
