@@ -1,6 +1,7 @@
 package org.wikipedia.dataclient;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -125,14 +126,17 @@ public final class SharedPreferenceCookieManager implements CookieJar {
         List<Cookie> cookieList = new ArrayList<>();
         String domain = url.uri().getAuthority();
 
+        Log.d("CookieManager", "Domain:" + domain);
+
         for (String domainSpec : cookieJar.keySet()) {
             List<Cookie> cookiesForDomainSpec = cookieJar.get(domainSpec);
 
             if (domain.endsWith(domainSpec)) {
                 buildCookieList(cookieList, cookiesForDomainSpec, null);
-            } else if (domainSpec.endsWith("wikipedia.org")) {
+            } else if (domainSpec.endsWith("commons.wikimedia.org")) {
+                Log.d("CookieManager", "Adding centralauth cookies");
                 // For sites outside the wikipedia.org domain, transfer the centralauth cookies
-                // from wikipedia.org unconditionally.
+                // from commons.wikimedia.org unconditionally.
                 buildCookieList(cookieList, cookiesForDomainSpec, CENTRALAUTH_PREFIX);
             }
         }
