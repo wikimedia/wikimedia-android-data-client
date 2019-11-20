@@ -21,7 +21,7 @@ import okhttp3.HttpUrl;
 public final class SharedPreferenceCookieManager implements CookieJar {
     private static final String CENTRAL_AUTH_PREFIX = "centralauth_";
     private static final String WIKIPEDIA_DOMAIN = "wikipedia.org";
-    private static final String MEDIAWIKI_DOMAIN = "wikimedia.org";
+    private static final String MEDIAWIKI_DOMAIN = "mediawiki.org";
     private static final String WIKIDATA_DOMAIN = "wikidata.org";
     private static final String WIKIMEDIA_DOMAIN = "wikimedia.org";
     private static final List<String> CENTRAL_AUTH_DOMAINS = new ArrayList<String>(){{
