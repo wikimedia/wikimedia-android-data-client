@@ -28,6 +28,7 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
     @Nullable private List<ConvertedTitle> converted;
     @SerializedName("userinfo") private UserInfo userInfo;
     @Nullable private List<ListUserResponse> users;
+    @Nullable private DepictedItem depictedItem;
     @Nullable private Tokens tokens;
     @SerializedName("authmanagerinfo") @Nullable private MwAuthManagerInfo amInfo;
     @Nullable private MarkReadResponse echomarkread;
@@ -103,6 +104,10 @@ public class MwQueryResult extends BaseModel implements PostProcessingTypeAdapte
 
     @Nullable public List<RecentChange> getRecentChanges() {
         return recentchanges;
+    }
+
+    @Nullable public DepictedItem getDepictedItem() {
+        return depictedItem;
     }
 
     @Nullable public ListUserResponse getUserResponse(@NonNull String userName) {
