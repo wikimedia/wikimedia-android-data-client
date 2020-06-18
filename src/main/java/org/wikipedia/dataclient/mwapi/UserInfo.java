@@ -11,14 +11,25 @@ public class UserInfo {
     private String name;
     private int id;
 
+    //Block information
+    private int blockid;
+    private String blockedby;
+    private int blockedbyid;
+    private String blockreason;
+    private String blocktimestamp;
+    private String blockexpiry;
+
     // Object type is any JSON type.
-    @Nullable private Map<String, ?> options;
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    @Nullable
+    private Map<String, ?> options;
 
     public int id() {
         return id;
     }
 
-    @NonNull public Map<String, String> userjsOptions() {
+    @NonNull
+    public Map<String, String> userjsOptions() {
         Map<String, String> map = new HashMap<>();
         if (options != null) {
             for (Map.Entry<String, ?> entry : options.entrySet()) {
@@ -29,5 +40,29 @@ public class UserInfo {
             }
         }
         return map;
+    }
+
+    public int blockid() {
+        return blockid;
+    }
+
+    public String blockedby() {
+        return blockedby;
+    }
+
+    public int blockedbyid() {
+        return blockedbyid;
+    }
+
+    public String blockreason() {
+        return blockreason;
+    }
+
+    public String blocktimestamp() {
+        return blocktimestamp;
+    }
+
+    public String blockexpiry() {
+        return blockexpiry;
     }
 }
